@@ -1,7 +1,5 @@
 package com.dasd412.controller.chart;
 
-import java.util.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,16 +56,12 @@ public class ChartRestControllerTest {
 
     @Test
     public void testGetRandomDummies() throws Exception {
-        String url = "http://localhost:" + port + "/api/nlp/charts/random";
-        List<String> resultList = new ArrayList<>();
+        String url = "http://localhost:" + port + "/api/nlp/charts/randomset";
 
-        for (int i = 0; i < 20; i++) {
-            String result = mockMvc.perform(get(url).contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isOk()).andDo(print()).andReturn().getResponse()
-                .getContentAsString();
-            resultList.add(result);
-        }
+        String result = mockMvc.perform(get(url).contentType(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk()).andDo(print()).andReturn().getResponse()
+            .getContentAsString();
 
-        logger.info("result LIST->" + resultList);
+        logger.info("result LIST->" + result);
     }
 }
