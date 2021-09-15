@@ -1,0 +1,18 @@
+{{#layout}}
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary">Random data generate</button>
+  <div class="main">
+    <select name="dataType" class="form-select"  id="selectData" onchange="changeItem()">
+      <option value="approvalRating">approval rating</option>
+      <option value="commentRate">comment rate</option>
+    </select>
+    <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+  </div>
+{{/layout}}
+<script src="/js/app/charts/vertical.js"></script>

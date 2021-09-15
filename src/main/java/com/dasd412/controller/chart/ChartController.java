@@ -11,8 +11,13 @@ public class ChartController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/api/nlp/charts")
-    public String viewResolve(Model model) {
-        return "/charts/charts";
+    @GetMapping("/api/nlp/chart/vertical")
+    public String viewResolveVertical(Model model) {
+        return "/charts/vertical";
+    }
+
+    @GetMapping("/api/nlp/chart/doughnut")
+    public String viewResolveDoughnut(Model model) {
+        return "/charts/doughnut";
     }
 }

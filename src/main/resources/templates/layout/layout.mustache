@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link href="/css/charts/vertical.css" rel='stylesheet' type="text/css"/>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <link rel="stylesheet" href="/css/style.css">
 
 </head>
@@ -18,8 +18,9 @@
   <aside id="colorlib-aside" role="complementary" class="js-fullheight">
     <nav id="colorlib-main-menu" role="navigation">
       <ul>
-        <li class="colorlib-active"><a href="#">Home</a></li>
-        <li><a href="#">Project</a></li>
+        <li class="colorlib-active"><a href="/">Home</a></li>
+        <li><a href="/api/nlp/chart/vertical">Vertical Chart</a></li>
+        <li><a href="/api/nlp/chart/doughnut">Doughnut Chart</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -34,14 +35,7 @@
             <h1 class="h2">Graduation Project</h1>
             <p>텍스트 분석을 통한 정치인사 지지율, 키워드 분석</p>
           </div>
-          <div class="col-md-6">
-            <h2 class="h4">vertical chart</h2>
-            <p>chart1</p>
-          </div>
-          <div class="col-md-6">
-            <h2 class="h4">doughnut chart</h2>
-            <p>chart2</p>
-          </div>
+          {{{layout.content}}}
         </div>
       </div>
     </section>
