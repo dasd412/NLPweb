@@ -30,7 +30,6 @@ const generator={
       localStorage.setItem('approvalRatings',JSON.stringify(approvalRatings));
       localStorage.setItem('comment',JSON.stringify(comment));
 
-      //localComment=(localStorage.getItem('comment');
     });
   }//generate random data function
 

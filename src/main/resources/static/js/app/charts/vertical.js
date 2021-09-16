@@ -13,7 +13,7 @@ const options = {
     options: {
         title: {
             display: true,
-            text: 'Vertical Chart',
+            text: '지지율 차트',
             fontSize: 20,
             fontColor: 'rgba(46, 49, 49, 1)'
         },
@@ -91,15 +91,23 @@ function addData(chart, label, data) {
 
 function drawBackgroundColor(chart, index) {
     chart.data.datasets.forEach((dataset) => {
-        dataset.backgroundColor.push(backgroundColor[index % 6]);
-        dataset.borderColor.push(borderColor[index % 6]);
+        dataset.backgroundColor.push(backgroundColor[index%6]);
+        dataset.borderColor.push(borderColor[index%6 ]);
     });
 
     chart.update();
 }
 
-
+function getApprovalRatings(){
+  return JSON.parse(localStorage.getItem('approvalRatings'));
+}
 
 $(document).ready(function () {
-    drawCharts();
+    ratings=getApprovalRatings();
+
+    for(let i=0;i<=ratings.length;i++){
+      addData(chart,i+1,ratings[i]);
+      drawBackgroundColor(chart,i);
+    }
+
 });
