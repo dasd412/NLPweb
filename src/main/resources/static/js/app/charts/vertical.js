@@ -20,7 +20,7 @@ const options = {
         legend: {
             labels: {
                 fontColor: 'rgba(83, 51, 237, 1)',
-                fontSize: 13
+                fontSize: 15
             }
         },
         scales:
@@ -105,7 +105,7 @@ function getApprovalRatings(){
 $(document).ready(function () {
     ratings=getApprovalRatings();
 
-    for(let i=0;i<=ratings.length;i++){
+    for(let i=0;i<ratings.length;i++){
       addData(chart,i+1,ratings[i]);
       drawBackgroundColor(chart,i);
     }
