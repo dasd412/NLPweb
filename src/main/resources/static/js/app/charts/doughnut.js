@@ -86,7 +86,6 @@ $(document).ready(function () {
       addData(chart,key,commentDict[key]);
       idx+=1;
     }
-    console.log('len',idx);
 
     for(let i=0;i<idx;i++){
       drawBackgroundColor(chart,i);
