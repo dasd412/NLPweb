@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleRepository extends JpaRepository<Article, String> {
 
     @Query(value = "from Article where date between :startDate and :endDate")
     List<Article> findAllBetweenDates(@Param("startDate") LocalDateTime startDate,
