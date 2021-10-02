@@ -37,7 +37,8 @@ public class Emoji {//기사와 다대일 관계
     protected Emoji() {
     }
 
-    public Emoji(int likes, int warm, int sad, int mad, int want, String keyWord) {
+    public Emoji(String id,int likes, int warm, int sad, int mad, int want, String keyWord) {
+        this.id=id;
         this.likes = likes;
         this.warm = warm;
         this.sad = sad;
@@ -74,6 +75,10 @@ public class Emoji {//기사와 다대일 관계
         return keyWord;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
 
     @Override
     public int hashCode() {
@@ -104,6 +109,15 @@ public class Emoji {//기사와 다대일 관계
             .append("keyWord", keyWord)
             .toString();
     }
+
+    public void setArticle(Article article) {
+        this.article = article;
+        //무한 루프 방지
+        if (!article.getEmojiList().contains(this)) {
+            article.getEmojiList().add(this);
+        }
+    }
+
 
     static public class Builder {
 
@@ -173,7 +187,7 @@ public class Emoji {//기사와 다대일 관계
         }
 
         public Emoji build() {
-            return new Emoji(likes, warm, sad, mad, want, keyWord);
+            return new Emoji(id,likes, warm, sad, mad, want, keyWord);
         }
     }
 }

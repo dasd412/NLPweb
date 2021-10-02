@@ -1,5 +1,7 @@
 package com.dasd412.domain.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.List;
@@ -31,16 +33,20 @@ public class Article {//Emoji, reply와 1대 다 관계임
 
     private LocalDateTime date;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "article")
     List<Reply> replies = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "article")
-    List<Emoji>emojiList=new ArrayList<>();
+    List<Emoji> emojiList = new ArrayList<>();
 
     protected Article() {
     }
 
-    public Article(String title, String comp, String editor, String keyWord, LocalDateTime date) {
+    public Article(String id, String title, String comp, String editor, String keyWord,
+        LocalDateTime date) {
+        this.id = id;
         this.title = title;
         this.comp = comp;
         this.editor = editor;
@@ -70,6 +76,32 @@ public class Article {//Emoji, reply와 1대 다 관계임
 
     public LocalDateTime getDate() {
         return date;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public List<Emoji> getEmojiList() {
+        return emojiList;
+    }
+
+    public void addReply(Reply reply) {
+        this.replies.add(reply);
+
+        //무한 루프 방지용
+        if (reply.getArticle() != this) {
+            reply.setArticle(this);
+        }
+    }
+
+    public void addEmoji(Emoji emoji) {
+        this.emojiList.add(emoji);
+
+        //무한 루프 방지용
+        if (emoji.getArticle() != this) {
+            emoji.setArticle(this);
+        }
     }
 
     @Override
@@ -163,7 +195,7 @@ public class Article {//Emoji, reply와 1대 다 관계임
         }
 
         public Article build() {
-            return new Article(title, comp, editor, keyWord, date);
+            return new Article(id, title, comp, editor, keyWord, date);
         }
     }
 }

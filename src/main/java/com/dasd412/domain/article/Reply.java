@@ -58,6 +58,18 @@ public class Reply {//Article과 다대일 관계
         return date;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+        //무한 루프 방지용
+        if (!article.getReplies().contains(this)) {
+            article.getReplies().add(this);
+        }
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

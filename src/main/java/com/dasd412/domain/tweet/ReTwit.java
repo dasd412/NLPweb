@@ -31,7 +31,8 @@ public class ReTwit {//트윗과 다대다 관계
     protected ReTwit() {
     }
 
-    public ReTwit(String body, String worked, String deleted, String keyWord) {
+    public ReTwit(String id,String body, String worked, String deleted, String keyWord) {
+        this.id=id;
         this.body = body;
         this.worked = worked;
         this.deleted = deleted;
@@ -117,7 +118,7 @@ public class ReTwit {//트윗과 다대다 관계
         }
 
         public ReTwit build() {
-            return new ReTwit(body, worked, deleted, keyWord);
+            return new ReTwit(id,body, worked, deleted, keyWord);
         }
     }
 }
