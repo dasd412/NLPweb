@@ -2,9 +2,8 @@ package com.dasd412.domain.tweet;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -13,16 +12,18 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
-public class ReTwit {
+public class ReTwit {//트윗과 다대다 관계
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
+    @Column(columnDefinition = "TEXT")
     private String body;
 
+    @Column(columnDefinition = "TEXT")
     private String worked;
 
+    @Column(columnDefinition = "TEXT")
     private String deleted;
 
     private String keyWord;
@@ -67,7 +68,7 @@ public class ReTwit {
 
     static public class Builder {
 
-        private Long id;
+        private String id;
         private String body;
         private String worked;
         private String deleted;
@@ -84,7 +85,8 @@ public class ReTwit {
             this.keyWord = reTwit.keyWord;
         }
 
-        public Builder id(long id) {
+        public Builder id(String id) {
+            checkArgument(id.length() > 0 && id.length() <= 20, "id length should be 20>=x>0");
             this.id = id;
             return this;
         }

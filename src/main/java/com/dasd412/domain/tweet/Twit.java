@@ -3,6 +3,7 @@ package com.dasd412.domain.tweet;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,18 +16,21 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 
 @Entity
-public class Twit {
+public class Twit {//리트윗과 다대다 관계
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     private String hashtag;
 
+    @Column(columnDefinition = "TEXT")
     private String worked;
 
+    @Column(columnDefinition = "TEXT")
     private String deleted;
 
     private LocalDateTime date;

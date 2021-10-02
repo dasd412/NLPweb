@@ -2,11 +2,12 @@ package com.dasd412.domain.article;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,11 +15,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
-public class Article {
+public class Article {//Emoji, reply와 1대 다 관계임
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String title;
 
@@ -31,6 +31,12 @@ public class Article {
 
     private LocalDateTime date;
 
+    @OneToMany(mappedBy = "article")
+    List<Reply> replies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "article")
+    List<Emoji>emojiList=new ArrayList<>();
+
     protected Article() {
     }
 
@@ -42,7 +48,7 @@ public class Article {
         this.date = date;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -97,7 +103,7 @@ public class Article {
 
     static public class Builder {
 
-        private Long id;
+        private String id;
         private String title;
         private String comp;
         private String editor;
@@ -116,7 +122,9 @@ public class Article {
             this.date = article.date;
         }
 
-        public Builder id(long id) {
+        public Builder id(String id) {
+            checkArgument(id.length() > 0 && id.length() <= 768,
+                "id length should be 0<x<=768");
             this.id = id;
             return this;
         }

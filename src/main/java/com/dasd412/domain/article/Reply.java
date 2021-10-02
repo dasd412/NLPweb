@@ -3,11 +3,14 @@ package com.dasd412.domain.article;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -19,17 +22,22 @@ public class Reply {//Article과 다대일 관계
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String text;
+    @Column(columnDefinition = "TEXT")
+    private String body;
 
     private String keyWord;
 
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
+
     protected Reply() {
     }
 
-    public Reply(String text, String keyWord, LocalDateTime date) {
-        this.text = text;
+    public Reply(String body, String keyWord, LocalDateTime date) {
+        this.body = body;
         this.keyWord = keyWord;
         this.date = date;
     }
@@ -38,8 +46,8 @@ public class Reply {//Article과 다대일 관계
         return id;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
     public String getKeyWord() {
@@ -71,7 +79,7 @@ public class Reply {//Article과 다대일 관계
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("id", id)
-            .append("text", text)
+            .append("body", body)
             .append("keyword", keyWord)
             .append("date", date)
             .toString();
@@ -80,7 +88,7 @@ public class Reply {//Article과 다대일 관계
     static public class Builder {
 
         private Long id;
-        private String text;
+        private String body;
         private String keyWord;
         private LocalDateTime date;
 
@@ -89,7 +97,7 @@ public class Reply {//Article과 다대일 관계
 
         public Builder(Reply reply) {
             this.id = reply.id;
-            this.text = reply.text;
+            this.body = reply.body;
             this.keyWord = reply.keyWord;
             this.date = reply.date;
         }
@@ -99,8 +107,8 @@ public class Reply {//Article과 다대일 관계
             return this;
         }
 
-        public Builder text(String text) {
-            this.text = text;
+        public Builder body(String body) {
+            this.body = body;
             return this;
         }
 
@@ -117,7 +125,7 @@ public class Reply {//Article과 다대일 관계
         }
 
         public Reply build() {
-            return new Reply(text, keyWord, date);
+            return new Reply(body, keyWord, date);
         }
     }
 

@@ -1,10 +1,12 @@
 package com.dasd412.domain.article;
 
 import java.util.Objects;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -14,8 +16,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class Emoji {//기사와 다대일 관계
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private int likes;
 
@@ -29,6 +30,10 @@ public class Emoji {//기사와 다대일 관계
 
     private String keyWord;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
+
     protected Emoji() {
     }
 
@@ -41,7 +46,7 @@ public class Emoji {//기사와 다대일 관계
         this.keyWord = keyWord;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -102,7 +107,7 @@ public class Emoji {//기사와 다대일 관계
 
     static public class Builder {
 
-        private Long id;
+        private String id;
         private int likes;
         private int warm;
         private int sad;
@@ -123,7 +128,8 @@ public class Emoji {//기사와 다대일 관계
             this.keyWord = emoji.keyWord;
         }
 
-        public Builder id(long id) {
+        public Builder id(String id) {
+            checkArgument(id.length() > 0 && id.length() <= 768, "id length should be 768>=x>0");
             this.id = id;
             return this;
         }
