@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -16,7 +18,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 
 @Entity
-public class Twit {//리트윗과 다대다 관계
+public class Twit {// N , 리트윗과 다대일 관계
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +42,10 @@ public class Twit {//리트윗과 다대다 관계
     private String originId;
 
     private String keyWord;
+
+    @ManyToOne
+    @JoinColumn(name="re_twit_id")
+    private ReTwit reTwit;
 
 
     protected Twit() {

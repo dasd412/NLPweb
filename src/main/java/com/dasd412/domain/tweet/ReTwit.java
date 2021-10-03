@@ -1,18 +1,23 @@
 package com.dasd412.domain.tweet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import javax.persistence.OneToMany;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
-public class ReTwit {//트윗과 다대다 관계
+public class ReTwit {// 1 , 트윗과 일대다 관계
 
     @Id
     private String id;
@@ -27,6 +32,10 @@ public class ReTwit {//트윗과 다대다 관계
     private String deleted;
 
     private String keyWord;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "reTwit")
+    List<Twit>twitList=new ArrayList<>();
 
     protected ReTwit() {
     }
