@@ -94,6 +94,7 @@ public class Reply {//Article과 다대일 관계
             .append("body", body)
             .append("keyword", keyWord)
             .append("date", date)
+            .append("article",article)
             .toString();
     }
 

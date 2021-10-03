@@ -107,6 +107,7 @@ public class Emoji {//기사와 다대일 관계
             .append("mad", mad)
             .append("want", want)
             .append("keyWord", keyWord)
+            .append("article",article)
             .toString();
     }
 
