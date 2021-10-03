@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ReTwitRepository extends JpaRepository<ReTwit,String> {
+public interface ReTwitRepository extends JpaRepository<ReTwit, String> {
 
     @Query(value = "from ReTwit where date between :startDate and :endDate")
     List<ReTwit> findAllBetweenDates(@Param("startDate") LocalDateTime startDate,

@@ -44,7 +44,7 @@ public class Twit {// N , 리트윗과 다대일 관계
     private String keyWord;
 
     @ManyToOne
-    @JoinColumn(name="re_twit_id")
+    @JoinColumn(name = "re_twit_id")
     private ReTwit reTwit;
 
 
@@ -131,6 +131,18 @@ public class Twit {// N , 리트윗과 다대일 관계
 
     public String getKeyWord() {
         return keyWord;
+    }
+
+    public ReTwit getReTwit() {
+        return reTwit;
+    }
+
+    public void setReTwit(ReTwit reTwit) {
+        this.reTwit = reTwit;
+        //무한 루프 방지
+        if (!reTwit.getTwitList().contains(this)) {
+            reTwit.getTwitList().add(this);
+        }
     }
 
     static public class Builder {

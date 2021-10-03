@@ -79,6 +79,14 @@ public class Emoji {//기사와 다대일 관계
         return article;
     }
 
+    public void setArticle(Article article) {
+        this.article = article;
+        //무한 루프 방지
+        if (!article.getEmojiList().contains(this)) {
+            article.getEmojiList().add(this);
+        }
+    }
+
 
     @Override
     public int hashCode() {
@@ -109,14 +117,6 @@ public class Emoji {//기사와 다대일 관계
             .append("keyWord", keyWord)
             .append("article",article)
             .toString();
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-        //무한 루프 방지
-        if (!article.getEmojiList().contains(this)) {
-            article.getEmojiList().add(this);
-        }
     }
 
 

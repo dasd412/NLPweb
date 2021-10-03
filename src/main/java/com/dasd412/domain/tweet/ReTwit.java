@@ -2,6 +2,7 @@ package com.dasd412.domain.tweet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,13 +36,13 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
 
     @JsonIgnore
     @OneToMany(mappedBy = "reTwit")
-    List<Twit>twitList=new ArrayList<>();
+    List<Twit> twitList = new ArrayList<>();
 
     protected ReTwit() {
     }
 
-    public ReTwit(String id,String body, String worked, String deleted, String keyWord) {
-        this.id=id;
+    public ReTwit(String id, String body, String worked, String deleted, String keyWord) {
+        this.id = id;
         this.body = body;
         this.worked = worked;
         this.deleted = deleted;
@@ -74,6 +75,39 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
             .append("deleted", deleted)
             .append("keyword", keyWord)
             .toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getWorked() {
+        return worked;
+    }
+
+    public String getDeleted() {
+        return deleted;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void addTwit(Twit twit) {
+        this.twitList.add(twit);
+
+        //무한 루프 방지
+        if (twit.getReTwit() != this) {
+            twit.setReTwit(this);
+        }
+    }
+
+    public List<Twit> getTwitList() {
+        return twitList;
     }
 
     static public class Builder {
@@ -127,7 +161,7 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         }
 
         public ReTwit build() {
-            return new ReTwit(id,body, worked, deleted, keyWord);
+            return new ReTwit(id, body, worked, deleted, keyWord);
         }
     }
 }

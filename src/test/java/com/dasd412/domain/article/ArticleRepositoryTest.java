@@ -42,13 +42,13 @@ public class ArticleRepositoryTest {
     String replyBody = "looooooooooooooooool";
     String replyKeyword = "mun";
 
-    String emojiId="asdasda";
-    int likes=5;
-    int mad=3;
-    int sad=4;
-    int warm=1;
-    int want=6;
-    String emojiKeyWord="moonmoon";
+    String emojiId = "asdasda";
+    int likes = 5;
+    int mad = 3;
+    int sad = 4;
+    int warm = 1;
+    int want = 6;
+    String emojiKeyWord = "moonmoon";
 
     @Transactional
     @Test
@@ -71,7 +71,7 @@ public class ArticleRepositoryTest {
 
         //then
         Article a = articleList.get(0);
-        logger.info(a.toString());
+        logger.info("article"+a);
         assertThat(a.getTitle()).isEqualTo(article.getTitle());
         assertThat(a.getComp()).isEqualTo(article.getComp());
         assertThat(a.getEditor()).isEqualTo(article.getEditor());
@@ -103,11 +103,11 @@ public class ArticleRepositoryTest {
         replyRepository.save(reply);
 
         //when
-        Reply foundReply=replyRepository.findAll().get(0);
+        Reply foundReply = replyRepository.findAll().get(0);
 
         //then
-        logger.info("article"+article.toString());
-        logger.info("reply"+reply.toString()+reply.getArticle().toString());
+        logger.info("article" + article);
+        logger.info("reply" + reply + reply.getArticle().toString());
 
         assertThat(foundReply.getBody()).isEqualTo(reply.getBody());
         assertThat(foundReply.getKeyWord()).isEqualTo(reply.getKeyWord());
@@ -136,10 +136,10 @@ public class ArticleRepositoryTest {
 
         articleRepository.save(article);
 
-        IntStream.range(0,10).forEach(i->{
-            Reply reply=new Reply.Builder()
-                .body(replyBody+" : "+i)
-                .keyWord(replyKeyword+" : "+i)
+        IntStream.range(0, 10).forEach(i -> {
+            Reply reply = new Reply.Builder()
+                .body(replyBody + " : " + i)
+                .keyWord(replyKeyword + " : " + i)
                 .dateTime(time)
                 .build();
 
@@ -148,13 +148,13 @@ public class ArticleRepositoryTest {
         });
 
         //when
-        List<Reply>replyList=replyRepository.findAll();
+        List<Reply> replyList = replyRepository.findAll();
 
         //then
-        logger.info("article"+article);
-        logger.info("replyList"+replyList);
+        logger.info("article" + article);
+        logger.info("replyList" + replyList);
 
-        IntStream.range(0,10).forEach(i->{
+        IntStream.range(0, 10).forEach(i -> {
             assertThat(replyList.get(i).getArticle().getTitle()).isEqualTo(article.getTitle());
             assertThat(replyList.get(i).getArticle().getComp()).isEqualTo(article.getComp());
             assertThat(replyList.get(i).getArticle().getEditor()).isEqualTo(article.getEditor());
@@ -178,7 +178,7 @@ public class ArticleRepositoryTest {
 
         articleRepository.save(article);
 
-        Emoji emoji=new Emoji.Builder()
+        Emoji emoji = new Emoji.Builder()
             .id(emojiId)
             .likes(likes)
             .sad(sad)
@@ -192,11 +192,11 @@ public class ArticleRepositoryTest {
         emojiRepository.save(emoji);
 
         //when
-        Emoji foundEmoji=emojiRepository.findAll().get(0);
+        Emoji foundEmoji = emojiRepository.findAll().get(0);
 
         //then
-        logger.info("article"+article.toString());
-        logger.info("emoji"+emoji.toString()+emoji.getArticle().toString());
+        logger.info("article" + article);
+        logger.info("emoji" + emoji + emoji.getArticle().toString());
 
         assertThat(foundEmoji.getId()).isEqualTo(emoji.getId());
         assertThat(foundEmoji.getLikes()).isEqualTo(emoji.getLikes());
@@ -230,30 +230,29 @@ public class ArticleRepositoryTest {
 
         articleRepository.save(article);
 
-        IntStream.range(0,10).forEach(i->{
-            Emoji emoji=new Emoji.Builder()
-                .id(emojiId+":"+i)
-                .likes(likes+i)
-                .sad(sad+i)
-                .mad(mad+i)
-                .warm(warm+i)
-                .want(want+i)
-                .keyWord(emojiKeyWord+"i")
+        IntStream.range(0, 10).forEach(i -> {
+            Emoji emoji = new Emoji.Builder()
+                .id(emojiId + ":" + i)
+                .likes(likes + i)
+                .sad(sad + i)
+                .mad(mad + i)
+                .warm(warm + i)
+                .want(want + i)
+                .keyWord(emojiKeyWord + "i")
                 .build();
 
             emoji.setArticle(article);
             emojiRepository.save(emoji);
         });
 
-
         //when
-        List<Emoji>emojiList=emojiRepository.findAll();
+        List<Emoji> emojiList = emojiRepository.findAll();
 
         //then
-        logger.info("article"+article);
-        logger.info("emojiList"+emojiList);
+        logger.info("article" + article);
+        logger.info("emojiList" + emojiList);
 
-        IntStream.range(0,10).forEach(i->{
+        IntStream.range(0, 10).forEach(i -> {
             assertThat(emojiList.get(i).getArticle().getTitle()).isEqualTo(article.getTitle());
             assertThat(emojiList.get(i).getArticle().getComp()).isEqualTo(article.getComp());
             assertThat(emojiList.get(i).getArticle().getEditor()).isEqualTo(article.getEditor());
@@ -287,7 +286,7 @@ public class ArticleRepositoryTest {
         reply.setArticle(article);
         replyRepository.save(reply);
 
-        Emoji emoji=new Emoji.Builder()
+        Emoji emoji = new Emoji.Builder()
             .id(emojiId)
             .likes(likes)
             .sad(sad)
@@ -301,12 +300,12 @@ public class ArticleRepositoryTest {
         emojiRepository.save(emoji);
 
         //when
-        Reply foundReply=replyRepository.findAll().get(0);
-        Emoji foundEmoji=emojiRepository.findAll().get(0);
+        Reply foundReply = replyRepository.findAll().get(0);
+        Emoji foundEmoji = emojiRepository.findAll().get(0);
 
         //then
-        logger.info("article"+article.toString());
-        logger.info("reply"+reply.toString()+reply.getArticle().toString());
+        logger.info("article" + article);
+        logger.info("reply" + reply + reply.getArticle().toString());
 
         assertThat(foundReply.getBody()).isEqualTo(reply.getBody());
         assertThat(foundReply.getKeyWord()).isEqualTo(reply.getKeyWord());
@@ -318,7 +317,7 @@ public class ArticleRepositoryTest {
         assertThat(foundReply.getArticle().getKeyWord()).isEqualTo(article.getKeyWord());
         assertThat(foundReply.getArticle().getDate()).isEqualTo(article.getDate());
 
-        logger.info("emoji"+emoji.toString()+emoji.getArticle().toString());
+        logger.info("emoji" + emoji + emoji.getArticle().toString());
 
         assertThat(foundEmoji.getId()).isEqualTo(emoji.getId());
         assertThat(foundEmoji.getLikes()).isEqualTo(emoji.getLikes());
