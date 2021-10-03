@@ -1,8 +1,7 @@
-package com.dasd412.domain.tweet;
+package com.dasd412.domain.twit;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
