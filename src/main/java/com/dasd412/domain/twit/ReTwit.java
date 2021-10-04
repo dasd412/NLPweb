@@ -18,11 +18,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
-@Table(name="retwit")
+@Table(name = "retwit")
 public class ReTwit {// 1 , 트윗과 일대다 관계
 
     @Id
-    @Column(name="origin_id",length=20)
+    @Column(name = "origin_id", length = 20)
     private String id;
 
     @Column(columnDefinition = "TEXT")

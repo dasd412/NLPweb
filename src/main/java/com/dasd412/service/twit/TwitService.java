@@ -12,18 +12,14 @@ import org.springframework.stereotype.Service;
 public class TwitService {
 
     private final ReTwitRepository reTwitRepository;
-//    private final TwitRepository twitRepository;
-//
-//    public TwitService(ReTwitRepository reTwitRepository,
-//        TwitRepository twitRepository) {
-//        this.reTwitRepository = reTwitRepository;
-//        this.twitRepository = twitRepository;
-//    }
+    private final TwitRepository twitRepository;
 
-
-    public TwitService(ReTwitRepository reTwitRepository) {
+    public TwitService(ReTwitRepository reTwitRepository,
+        TwitRepository twitRepository) {
         this.reTwitRepository = reTwitRepository;
+        this.twitRepository = twitRepository;
     }
+
 
     @Transactional(readOnly = true)
     public List<ReTwit> getRetwitList() {

@@ -5,42 +5,46 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 
-//@Entity
+@Entity
+@Table(name = "twit")
 public class Twit {// N , 리트윗과 다대일 관계
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id
+    @Column(name = "twit_Index", length = 20)
+    private String id;
 
-   // @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
+    @Column(length = 100)
     private String hashtag;
 
-    //@Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String worked;
 
-    //@Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String deleted;
 
     private LocalDateTime date;
 
+    @Column(name = "is_retwitted")
     private boolean isRetwitted;
 
+    @Column(name = "origin_id", length = 20)
     private String originId;
 
+    @Column(name = "keyword", length = 20)
     private String keyWord;
 
 //    @ManyToOne
@@ -97,7 +101,7 @@ public class Twit {// N , 리트윗과 다대일 관계
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -147,7 +151,7 @@ public class Twit {// N , 리트윗과 다대일 관계
 
     static public class Builder {
 
-        private Long id;
+        private String id;
         private String body;
         private String hashtag;
         private String worked;
@@ -172,7 +176,7 @@ public class Twit {// N , 리트윗과 다대일 관계
             this.keyWord = twit.keyWord;
         }
 
-        public Builder id(long id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
