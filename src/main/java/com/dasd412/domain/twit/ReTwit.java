@@ -11,41 +11,44 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
+@Table(name="retwit")
 public class ReTwit {// 1 , 트윗과 일대다 관계
 
     @Id
+    @Column(name="origin_id",length=20)
     private String id;
 
     @Column(columnDefinition = "TEXT")
     private String body;
 
     @Column(columnDefinition = "TEXT")
-    private String worked;
-
-    @Column(columnDefinition = "TEXT")
     private String deleted;
 
-    private String keyWord;
+    @Column(columnDefinition = "TEXT")
+    private String worked;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "reTwit")
-    List<Twit> twitList = new ArrayList<>();
+//    @Column(name="keyword",length=20)
+//    private String keyWord;
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "reTwit")
+//    List<Twit> twitList = new ArrayList<>();
 
     protected ReTwit() {
     }
 
-    public ReTwit(String id, String body, String worked, String deleted, String keyWord) {
+    public ReTwit(String id, String body, String worked, String deleted) {
         this.id = id;
         this.body = body;
         this.worked = worked;
         this.deleted = deleted;
-        this.keyWord = keyWord;
     }
 
     @Override
@@ -72,7 +75,6 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
             .append("body", body)
             .append("worked", worked)
             .append("deleted", deleted)
-            .append("keyword", keyWord)
             .toString();
     }
 
@@ -92,22 +94,18 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         return deleted;
     }
 
-    public String getKeyWord() {
-        return keyWord;
-    }
-
-    public void addTwit(Twit twit) {
-        this.twitList.add(twit);
-
-        //무한 루프 방지
-        if (twit.getReTwit() != this) {
-            twit.setReTwit(this);
-        }
-    }
-
-    public List<Twit> getTwitList() {
-        return twitList;
-    }
+//    public void addTwit(Twit twit) {
+//        this.twitList.add(twit);
+//
+//        //무한 루프 방지
+//        if (twit.getReTwit() != this) {
+//            twit.setReTwit(this);
+//        }
+//    }
+//
+//    public List<Twit> getTwitList() {
+//        return twitList;
+//    }
 
     static public class Builder {
 
@@ -115,7 +113,6 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         private String body;
         private String worked;
         private String deleted;
-        private String keyWord;
 
         public Builder() {
         }
@@ -125,7 +122,6 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
             this.body = reTwit.body;
             this.worked = reTwit.worked;
             this.deleted = reTwit.deleted;
-            this.keyWord = reTwit.keyWord;
         }
 
         public Builder id(String id) {
@@ -152,15 +148,8 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
             return this;
         }
 
-        public Builder keyWord(String keyWord) {
-            checkArgument(keyWord.length() > 0 && keyWord.length() <= 20,
-                "keyWord length should be 20>=x>0");
-            this.keyWord = keyWord;
-            return this;
-        }
-
         public ReTwit build() {
-            return new ReTwit(id, body, worked, deleted, keyWord);
+            return new ReTwit(id, body, worked, deleted);
         }
     }
 }

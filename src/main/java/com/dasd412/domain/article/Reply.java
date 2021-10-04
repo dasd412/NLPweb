@@ -16,22 +16,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-@Entity
+//@Entity
 public class Reply {//Article과 다대일 관계
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TEXT")
+   // @Column(columnDefinition = "TEXT")
     private String body;
 
     private String keyWord;
 
     private LocalDateTime date;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
+//    @ManyToOne
+//    @JoinColumn(name = "article_id")
+//    private Article article;
 
     protected Reply() {
     }
@@ -58,17 +58,17 @@ public class Reply {//Article과 다대일 관계
         return date;
     }
 
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-        //무한 루프 방지용
-        if (!article.getReplies().contains(this)) {
-            article.getReplies().add(this);
-        }
-    }
+//    public Article getArticle() {
+//        return article;
+//    }
+//
+//    public void setArticle(Article article) {
+//        this.article = article;
+//        //무한 루프 방지용
+//        if (!article.getReplies().contains(this)) {
+//            article.getReplies().add(this);
+//        }
+//    }
 
     @Override
     public int hashCode() {
@@ -94,7 +94,6 @@ public class Reply {//Article과 다대일 관계
             .append("body", body)
             .append("keyword", keyWord)
             .append("date", date)
-            .append("article",article)
             .toString();
     }
 

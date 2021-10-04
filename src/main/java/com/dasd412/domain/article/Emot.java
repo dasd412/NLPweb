@@ -2,21 +2,24 @@ package com.dasd412.domain.article;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-@Entity
-public class Emoji {//기사와 다대일 관계
+//@Entity
+//@Table(name="emot")
+public class Emot {//기사와 다대일 관계
 
-    @Id
-    private String id;
+    //@Id
+    private String article_Index;
 
     private int likes;
 
@@ -28,17 +31,18 @@ public class Emoji {//기사와 다대일 관계
 
     private int want;
 
+    //@Column(name="keyword")
     private String keyWord;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
+    //@ManyToOne
+    //@JoinColumn(name = "article_index",insertable = false,updatable = false)
+    //private Article article;
 
-    protected Emoji() {
+    protected Emot() {
     }
 
-    public Emoji(String id,int likes, int warm, int sad, int mad, int want, String keyWord) {
-        this.id=id;
+    public Emot(String article_Index,int likes, int warm, int sad, int mad, int want, String keyWord) {
+        this.article_Index=article_Index;
         this.likes = likes;
         this.warm = warm;
         this.sad = sad;
@@ -47,8 +51,8 @@ public class Emoji {//기사와 다대일 관계
         this.keyWord = keyWord;
     }
 
-    public String getId() {
-        return id;
+    public String getArticle_Index() {
+        return article_Index;
     }
 
     public int getLikes() {
@@ -75,22 +79,22 @@ public class Emoji {//기사와 다대일 관계
         return keyWord;
     }
 
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-        //무한 루프 방지
-        if (!article.getEmojiList().contains(this)) {
-            article.getEmojiList().add(this);
-        }
-    }
+//    public Article getArticle() {
+//        return article;
+//    }
+//
+//    public void setArticle(Article article) {
+//        this.article = article;
+//        //무한 루프 방지
+//        if (!article.getEmojiList().contains(this)) {
+//            article.getEmojiList().add(this);
+//        }
+//    }
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(article_Index);
     }
 
     @Override
@@ -101,28 +105,27 @@ public class Emoji {//기사와 다대일 관계
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Emoji emoji = (Emoji) obj;
-        return Objects.equals(this.id, emoji.id);
+        Emot emot = (Emot) obj;
+        return Objects.equals(this.article_Index, emot.article_Index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("id", id)
+            .append("article_Index", article_Index)
             .append("likes", likes)
             .append("warm", warm)
             .append("sad", sad)
             .append("mad", mad)
             .append("want", want)
             .append("keyWord", keyWord)
-            .append("article",article)
             .toString();
     }
 
 
     static public class Builder {
 
-        private String id;
+        private String article_Index;
         private int likes;
         private int warm;
         private int sad;
@@ -133,19 +136,19 @@ public class Emoji {//기사와 다대일 관계
         public Builder() {
         }
 
-        public Builder(Emoji emoji) {
-            this.id = emoji.id;
-            this.likes = emoji.likes;
-            this.warm = emoji.warm;
-            this.sad = emoji.sad;
-            this.mad = emoji.mad;
-            this.want = emoji.want;
-            this.keyWord = emoji.keyWord;
+        public Builder(Emot emot) {
+            this.article_Index = emot.article_Index;
+            this.likes = emot.likes;
+            this.warm = emot.warm;
+            this.sad = emot.sad;
+            this.mad = emot.mad;
+            this.want = emot.want;
+            this.keyWord = emot.keyWord;
         }
 
-        public Builder id(String id) {
-            checkArgument(id.length() > 0 && id.length() <= 768, "id length should be 768>=x>0");
-            this.id = id;
+        public Builder articleIndex(String article_Index) {
+            checkArgument(article_Index.length() > 0 && article_Index.length() <= 768, "article_Index length should be 768>=x>0");
+            this.article_Index = article_Index;
             return this;
         }
 
@@ -187,8 +190,8 @@ public class Emoji {//기사와 다대일 관계
             return this;
         }
 
-        public Emoji build() {
-            return new Emoji(id,likes, warm, sad, mad, want, keyWord);
+        public Emot build() {
+            return new Emot(article_Index,likes, warm, sad, mad, want, keyWord);
         }
     }
 }

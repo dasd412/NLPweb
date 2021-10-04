@@ -17,22 +17,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import static com.google.common.base.Preconditions.checkArgument;
 
 
-@Entity
+//@Entity
 public class Twit {// N , 리트윗과 다대일 관계
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TEXT")
+   // @Column(columnDefinition = "TEXT")
     private String body;
 
     private String hashtag;
 
-    @Column(columnDefinition = "TEXT")
+    //@Column(columnDefinition = "TEXT")
     private String worked;
 
-    @Column(columnDefinition = "TEXT")
+    //@Column(columnDefinition = "TEXT")
     private String deleted;
 
     private LocalDateTime date;
@@ -43,9 +43,9 @@ public class Twit {// N , 리트윗과 다대일 관계
 
     private String keyWord;
 
-    @ManyToOne
-    @JoinColumn(name = "re_twit_id")
-    private ReTwit reTwit;
+//    @ManyToOne
+//    @JoinColumn(name = "re_twit_id")
+//    private ReTwit reTwit;
 
 
     protected Twit() {
@@ -133,17 +133,17 @@ public class Twit {// N , 리트윗과 다대일 관계
         return keyWord;
     }
 
-    public ReTwit getReTwit() {
-        return reTwit;
-    }
-
-    public void setReTwit(ReTwit reTwit) {
-        this.reTwit = reTwit;
-        //무한 루프 방지
-        if (!reTwit.getTwitList().contains(this)) {
-            reTwit.getTwitList().add(this);
-        }
-    }
+//    public ReTwit getReTwit() {
+//        return reTwit;
+//    }
+//
+//    public void setReTwit(ReTwit reTwit) {
+//        this.reTwit = reTwit;
+//        //무한 루프 방지
+//        if (!reTwit.getTwitList().contains(this)) {
+//            reTwit.getTwitList().add(this);
+//        }
+//    }
 
     static public class Builder {
 

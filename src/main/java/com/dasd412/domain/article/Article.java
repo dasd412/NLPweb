@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,33 +21,38 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class Article {//Emoji, reply와 1대 다 관계임
 
     @Id
-    private String id;
+    @Column(length = 768)
+    private String article_Index;
 
+    @Column(length=100)
     private String title;
 
     //언론사
+    @Column(length=20)
     private String comp;
 
+    @Column(length=20)
     private String editor;
 
+    @Column(name="keyword",length=20)
     private String keyWord;
 
     private LocalDateTime date;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "article")
-    List<Reply> replies = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "article")
+//    List<Reply> replies = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "article")
-    List<Emoji> emojiList = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "article")
+//    List<Emot> emotList = new ArrayList<>();
 
     protected Article() {
     }
 
-    public Article(String id, String title, String comp, String editor, String keyWord,
+    public Article(String article_Index, String title, String comp, String editor, String keyWord,
         LocalDateTime date) {
-        this.id = id;
+        this.article_Index = article_Index;
         this.title = title;
         this.comp = comp;
         this.editor = editor;
@@ -54,8 +60,8 @@ public class Article {//Emoji, reply와 1대 다 관계임
         this.date = date;
     }
 
-    public String getId() {
-        return id;
+    public String getArticle_Index() {
+        return article_Index;
     }
 
     public String getTitle() {
@@ -78,35 +84,35 @@ public class Article {//Emoji, reply와 1대 다 관계임
         return date;
     }
 
-    public List<Reply> getReplies() {
-        return replies;
-    }
-
-    public List<Emoji> getEmojiList() {
-        return emojiList;
-    }
-
-    public void addReply(Reply reply) {
-        this.replies.add(reply);
-
-        //무한 루프 방지용
-        if (reply.getArticle() != this) {
-            reply.setArticle(this);
-        }
-    }
-
-    public void addEmoji(Emoji emoji) {
-        this.emojiList.add(emoji);
-
-        //무한 루프 방지용
-        if (emoji.getArticle() != this) {
-            emoji.setArticle(this);
-        }
-    }
+//    public List<Reply> getReplies() {
+//        return replies;
+//    }
+//
+//    public List<Emot> getEmojiList() {
+//        return emotList;
+//    }
+//
+//    public void addReply(Reply reply) {
+//        this.replies.add(reply);
+//
+//        //무한 루프 방지용
+//        if (reply.getArticle() != this) {
+//            reply.setArticle(this);
+//        }
+//    }
+//
+//    public void addEmoji(Emot emot) {
+//        this.emotList.add(emot);
+//
+//        //무한 루프 방지용
+//        if (emot.getArticle() != this) {
+//            emot.setArticle(this);
+//        }
+//    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(article_Index);
     }
 
     @Override
@@ -118,13 +124,13 @@ public class Article {//Emoji, reply와 1대 다 관계임
             return false;
         }
         Article article = (Article) obj;
-        return Objects.equals(this.id, article.id);
+        return Objects.equals(this.article_Index, article.article_Index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("id", id)
+            .append("article_Index", article_Index)
             .append("title", title)
             .append("comp", comp)
             .append("editor", editor)
@@ -135,7 +141,7 @@ public class Article {//Emoji, reply와 1대 다 관계임
 
     static public class Builder {
 
-        private String id;
+        private String article_Index;
         private String title;
         private String comp;
         private String editor;
@@ -146,7 +152,7 @@ public class Article {//Emoji, reply와 1대 다 관계임
         }
 
         public Builder(Article article) {
-            this.id = article.id;
+            this.article_Index = article.article_Index;
             this.title = article.title;
             this.comp = article.comp;
             this.keyWord = article.keyWord;
@@ -154,10 +160,10 @@ public class Article {//Emoji, reply와 1대 다 관계임
             this.date = article.date;
         }
 
-        public Builder id(String id) {
-            checkArgument(id.length() > 0 && id.length() <= 768,
+        public Builder article_Index(String article_Index) {
+            checkArgument(article_Index.length() > 0 && article_Index.length() <= 768,
                 "id length should be 0<x<=768");
-            this.id = id;
+            this.article_Index = article_Index;
             return this;
         }
 
@@ -195,7 +201,7 @@ public class Article {//Emoji, reply와 1대 다 관계임
         }
 
         public Article build() {
-            return new Article(id, title, comp, editor, keyWord, date);
+            return new Article(article_Index, title, comp, editor, keyWord, date);
         }
     }
 }
