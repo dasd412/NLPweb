@@ -44,11 +44,12 @@ public class Twit {// N , 리트윗과 다대일 관계
     @Column(name = "origin_id", length = 20)
     private String originId;
 
+
     @Column(name = "keyword", length = 20)
     private String keyWord;
 
 //    @ManyToOne
-//    @JoinColumn(name = "re_twit_id")
+//    @JoinColumn(name = "origin_id",insertable = false,updatable = false)
 //    private ReTwit reTwit;
 
 

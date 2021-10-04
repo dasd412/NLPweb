@@ -21,10 +21,5 @@ public class TwitService {
     }
 
 
-    @Transactional(readOnly = true)
-    public List<ReTwit> getRetwitList() {
-        return reTwitRepository.findAll();
-    }
-
 
 }
