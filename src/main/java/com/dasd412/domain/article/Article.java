@@ -1,6 +1,5 @@
 package com.dasd412.domain.article;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -24,28 +23,20 @@ public class Article {//Emoji, reply와 1대 다 관계임
     @Column(length = 768)
     private String article_Index;
 
-    @Column(length=100)
+    @Column(length = 100)
     private String title;
 
     //언론사
-    @Column(length=20)
+    @Column(length = 20)
     private String comp;
 
-    @Column(length=20)
+    @Column(length = 20)
     private String editor;
 
-    @Column(name="keyword",length=20)
+    @Column(name = "keyword", length = 20)
     private String keyWord;
 
     private LocalDateTime date;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "article")
-//    List<Reply> replies = new ArrayList<>();
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "article")
-//    List<Emot> emotList = new ArrayList<>();
 
     protected Article() {
     }
@@ -84,31 +75,6 @@ public class Article {//Emoji, reply와 1대 다 관계임
         return date;
     }
 
-//    public List<Reply> getReplies() {
-//        return replies;
-//    }
-//
-//    public List<Emot> getEmojiList() {
-//        return emotList;
-//    }
-//
-//    public void addReply(Reply reply) {
-//        this.replies.add(reply);
-//
-//        //무한 루프 방지용
-//        if (reply.getArticle() != this) {
-//            reply.setArticle(this);
-//        }
-//    }
-//
-//    public void addEmoji(Emot emot) {
-//        this.emotList.add(emot);
-//
-//        //무한 루프 방지용
-//        if (emot.getArticle() != this) {
-//            emot.setArticle(this);
-//        }
-//    }
 
     @Override
     public int hashCode() {

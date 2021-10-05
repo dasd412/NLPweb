@@ -5,44 +5,44 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-//@Entity
-public class Reply {//Article과 다대일 관계
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Entity
+@Table(name = "reply")
+public class Reply {
+    @Id
+    @Column(name = "article_Index")
+    private String id;
 
-   // @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
+    @Column(name = "keyword", length = 20)
     private String keyWord;
 
     private LocalDateTime date;
 
-//    @ManyToOne
-//    @JoinColumn(name = "article_id")
-//    private Article article;
+    @Column(columnDefinition = "TEXT")
+    private String worked;
+
 
     protected Reply() {
     }
 
-    public Reply(String body, String keyWord, LocalDateTime date) {
+    public Reply(String body, String keyWord, LocalDateTime date, String worked) {
         this.body = body;
         this.keyWord = keyWord;
         this.date = date;
+        this.worked = worked;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -58,17 +58,9 @@ public class Reply {//Article과 다대일 관계
         return date;
     }
 
-//    public Article getArticle() {
-//        return article;
-//    }
-//
-//    public void setArticle(Article article) {
-//        this.article = article;
-//        //무한 루프 방지용
-//        if (!article.getReplies().contains(this)) {
-//            article.getReplies().add(this);
-//        }
-//    }
+    public String getWorked() {
+        return worked;
+    }
 
     @Override
     public int hashCode() {
@@ -94,15 +86,17 @@ public class Reply {//Article과 다대일 관계
             .append("body", body)
             .append("keyword", keyWord)
             .append("date", date)
+            .append("worked", worked)
             .toString();
     }
 
     static public class Builder {
 
-        private Long id;
+        private String id;
         private String body;
         private String keyWord;
         private LocalDateTime date;
+        private String worked;
 
         public Builder() {
         }
@@ -114,7 +108,7 @@ public class Reply {//Article과 다대일 관계
             this.date = reply.date;
         }
 
-        public Builder id(long id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
@@ -136,8 +130,13 @@ public class Reply {//Article과 다대일 관계
             return this;
         }
 
+        public Builder worked(String worked) {
+            this.worked = worked;
+            return this;
+        }
+
         public Reply build() {
-            return new Reply(body, keyWord, date);
+            return new Reply(body, keyWord, date, worked);
         }
     }
 

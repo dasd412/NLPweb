@@ -6,19 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-//@Entity
-//@Table(name="emot")
+@Entity
+@Table(name = "emot")
 public class Emot {//기사와 다대일 관계
 
-    //@Id
+    @Id
+    @Column(name = "article_Index", length = 768)
     private String article_Index;
 
     private int likes;
@@ -31,18 +30,15 @@ public class Emot {//기사와 다대일 관계
 
     private int want;
 
-    //@Column(name="keyword")
+    @Column(name = "keyword", length = 20)
     private String keyWord;
-
-    //@ManyToOne
-    //@JoinColumn(name = "article_index",insertable = false,updatable = false)
-    //private Article article;
 
     protected Emot() {
     }
 
-    public Emot(String article_Index,int likes, int warm, int sad, int mad, int want, String keyWord) {
-        this.article_Index=article_Index;
+    public Emot(String article_Index, int likes, int warm, int sad, int mad, int want,
+        String keyWord) {
+        this.article_Index = article_Index;
         this.likes = likes;
         this.warm = warm;
         this.sad = sad;
@@ -78,19 +74,6 @@ public class Emot {//기사와 다대일 관계
     public String getKeyWord() {
         return keyWord;
     }
-
-//    public Article getArticle() {
-//        return article;
-//    }
-//
-//    public void setArticle(Article article) {
-//        this.article = article;
-//        //무한 루프 방지
-//        if (!article.getEmojiList().contains(this)) {
-//            article.getEmojiList().add(this);
-//        }
-//    }
-
 
     @Override
     public int hashCode() {
@@ -147,7 +130,8 @@ public class Emot {//기사와 다대일 관계
         }
 
         public Builder articleIndex(String article_Index) {
-            checkArgument(article_Index.length() > 0 && article_Index.length() <= 768, "article_Index length should be 768>=x>0");
+            checkArgument(article_Index.length() > 0 && article_Index.length() <= 768,
+                "article_Index length should be 768>=x>0");
             this.article_Index = article_Index;
             return this;
         }
@@ -191,7 +175,7 @@ public class Emot {//기사와 다대일 관계
         }
 
         public Emot build() {
-            return new Emot(article_Index,likes, warm, sad, mad, want, keyWord);
+            return new Emot(article_Index, likes, warm, sad, mad, want, keyWord);
         }
     }
 }

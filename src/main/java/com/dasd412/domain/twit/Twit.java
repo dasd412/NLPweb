@@ -7,8 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -44,20 +42,11 @@ public class Twit {// N , 리트윗과 다대일 관계
     @Column(name = "origin_id", length = 20)
     private String originId;
 
-
-    @Column(name = "keyword", length = 20)
-    private String keyWord;
-
-//    @ManyToOne
-//    @JoinColumn(name = "origin_id",insertable = false,updatable = false)
-//    private ReTwit reTwit;
-
-
     protected Twit() {
     }
 
     public Twit(String body, String hashtag, String worked, String deleted, LocalDateTime date,
-        boolean isRetwitted, String originId, String keyWord) {
+        boolean isRetwitted, String originId) {
         this.body = body;
         this.hashtag = hashtag;
         this.worked = worked;
@@ -65,7 +54,6 @@ public class Twit {// N , 리트윗과 다대일 관계
         this.date = date;
         this.isRetwitted = isRetwitted;
         this.originId = originId;
-        this.keyWord = keyWord;
     }
 
     @Override
@@ -96,7 +84,6 @@ public class Twit {// N , 리트윗과 다대일 관계
             .append("date", date)
             .append("is re_twit", isRetwitted)
             .append("origin_id", originId)
-            .append("keyword", keyWord)
             .append("date", date)
             .toString();
     }
@@ -134,21 +121,6 @@ public class Twit {// N , 리트윗과 다대일 관계
         return originId;
     }
 
-    public String getKeyWord() {
-        return keyWord;
-    }
-
-//    public ReTwit getReTwit() {
-//        return reTwit;
-//    }
-//
-//    public void setReTwit(ReTwit reTwit) {
-//        this.reTwit = reTwit;
-//        //무한 루프 방지
-//        if (!reTwit.getTwitList().contains(this)) {
-//            reTwit.getTwitList().add(this);
-//        }
-//    }
 
     static public class Builder {
 
@@ -160,7 +132,6 @@ public class Twit {// N , 리트윗과 다대일 관계
         private LocalDateTime date;
         private boolean isRetwitted;
         private String originId;
-        private String keyWord;
 
         public Builder() {
         }
@@ -174,7 +145,6 @@ public class Twit {// N , 리트윗과 다대일 관계
             this.date = twit.date;
             this.isRetwitted = twit.isRetwitted;
             this.originId = twit.originId;
-            this.keyWord = twit.keyWord;
         }
 
         public Builder id(String id) {
@@ -224,15 +194,8 @@ public class Twit {// N , 리트윗과 다대일 관계
             return this;
         }
 
-        public Builder keyWord(String keyWord) {
-            checkArgument(keyWord.length() > 0 && keyWord.length() <= 20,
-                "keyWord length should be 20>=x>0");
-            this.keyWord = keyWord;
-            return this;
-        }
-
         public Twit build() {
-            return new Twit(body, hashtag, worked, deleted, date, isRetwitted, originId, keyWord);
+            return new Twit(body, hashtag, worked, deleted, date, isRetwitted, originId);
         }
 
     }

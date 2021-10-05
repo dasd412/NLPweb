@@ -34,12 +34,6 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
     @Column(columnDefinition = "TEXT")
     private String worked;
 
-//    @Column(name="keyword",length=20)
-//    private String keyWord;
-//
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "reTwit")
-//    List<Twit> twitList = new ArrayList<>();
 
     protected ReTwit() {
     }
@@ -93,19 +87,6 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
     public String getDeleted() {
         return deleted;
     }
-
-//    public void addTwit(Twit twit) {
-//        this.twitList.add(twit);
-//
-//        //무한 루프 방지
-//        if (twit.getReTwit() != this) {
-//            twit.setReTwit(this);
-//        }
-//    }
-//
-//    public List<Twit> getTwitList() {
-//        return twitList;
-//    }
 
     static public class Builder {
 
