@@ -10,11 +10,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +31,10 @@ public class TwitService {
     }
 
     @Transactional(readOnly = true)
-    public List<ReTwit> readReTwit() {
-        int start = 0;
-        int end = 10;
-        Pageable limit = PageRequest.of(start, end, Sort.by(Direction.ASC, "id"));
-        Page<ReTwit> reTwits = reTwitRepository.findAll(limit);
-        logger.info("found retwit" + reTwits);
-        return reTwits.getContent();
+    public List<ReTwit> readReTwit(int start) {
+        int end = start+5;
+        Pageable limit = PageRequest.of(start, end);
+        return reTwitRepository.findAllBy(limit);
     }
 
 //    @Transactional(readOnly = true)
@@ -54,6 +49,7 @@ public class TwitService {
 
     @Transactional(readOnly = true)
     public List<Twit> readTwitByReTwitId(String reTwitId) {
+        logger.info("service : "+reTwitId);
         Optional<List<Twit>> found = twitRepository.findAllByReTwitId(reTwitId);
         return found.orElseThrow(NoSuchElementException::new);
     }

@@ -11,11 +11,11 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 @Entity
 @Table(name = "reply")
 public class Reply {
+
     @Id
     @Column(name = "article_Index")
     private String id;
@@ -23,23 +23,36 @@ public class Reply {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Column(name = "keyword", length = 20)
-    private String keyWord;
-
     private LocalDateTime date;
 
     @Column(columnDefinition = "TEXT")
-    private String worked;
+    private String special_deleted;
 
+    @Column(columnDefinition = "TEXT")
+    private String okt_pos;
+
+    @Column(columnDefinition = "TEXT")
+    private String stopwords_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String noun;
+
+    @Column(columnDefinition = "TEXT")
+    private String n_v_adj_ad;
 
     protected Reply() {
     }
 
-    public Reply(String body, String keyWord, LocalDateTime date, String worked) {
+    public Reply(String id, String body, LocalDateTime date, String special_deleted,
+        String okt_pos, String stopwords_deleted, String noun, String n_v_adj_ad) {
+        this.id = id;
         this.body = body;
-        this.keyWord = keyWord;
         this.date = date;
-        this.worked = worked;
+        this.special_deleted = special_deleted;
+        this.okt_pos = okt_pos;
+        this.stopwords_deleted = stopwords_deleted;
+        this.noun = noun;
+        this.n_v_adj_ad = n_v_adj_ad;
     }
 
     public String getId() {
@@ -50,16 +63,28 @@ public class Reply {
         return body;
     }
 
-    public String getKeyWord() {
-        return keyWord;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
 
-    public String getWorked() {
-        return worked;
+    public String getSpecial_deleted() {
+        return special_deleted;
+    }
+
+    public String getOkt_pos() {
+        return okt_pos;
+    }
+
+    public String getStopwords_deleted() {
+        return stopwords_deleted;
+    }
+
+    public String getNoun() {
+        return noun;
+    }
+
+    public String getN_v_adj_ad() {
+        return n_v_adj_ad;
     }
 
     @Override
@@ -82,11 +107,14 @@ public class Reply {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("id", id)
+            .append("article_Index", id)
             .append("body", body)
-            .append("keyword", keyWord)
             .append("date", date)
-            .append("worked", worked)
+            .append("special_deleted", special_deleted)
+            .append("okt_pos", okt_pos)
+            .append("stopwords_deleted", stopwords_deleted)
+            .append("noun", noun)
+            .append("n_v_adj_ad", n_v_adj_ad)
             .toString();
     }
 
@@ -94,9 +122,12 @@ public class Reply {
 
         private String id;
         private String body;
-        private String keyWord;
         private LocalDateTime date;
-        private String worked;
+        private String special_deleted;
+        private String okt_pos;
+        private String stopwords_deleted;
+        private String noun;
+        private String n_v_adj_ad;
 
         public Builder() {
         }
@@ -104,8 +135,12 @@ public class Reply {
         public Builder(Reply reply) {
             this.id = reply.id;
             this.body = reply.body;
-            this.keyWord = reply.keyWord;
             this.date = reply.date;
+            this.special_deleted = reply.special_deleted;
+            this.okt_pos = reply.okt_pos;
+            this.stopwords_deleted = reply.stopwords_deleted;
+            this.noun = reply.noun;
+            this.n_v_adj_ad = reply.n_v_adj_ad;
         }
 
         public Builder id(String id) {
@@ -118,25 +153,41 @@ public class Reply {
             return this;
         }
 
-        public Builder keyWord(String keyWord) {
-            checkArgument(keyWord.length() > 0 && keyWord.length() <= 20,
-                "keyword length should be 0<x<=20");
-            this.keyWord = keyWord;
-            return this;
-        }
 
         public Builder dateTime(LocalDateTime date) {
             this.date = date;
             return this;
         }
 
-        public Builder worked(String worked) {
-            this.worked = worked;
+
+        public Builder special_deleted(String special_deleted) {
+            this.special_deleted = special_deleted;
+            return this;
+        }
+
+        public Builder okt_pos(String okt_pos) {
+            this.okt_pos = okt_pos;
+            return this;
+        }
+
+        public Builder stopwords_deleted(String stopwords_deleted) {
+            this.stopwords_deleted = stopwords_deleted;
+            return this;
+        }
+
+        public Builder noun(String noun) {
+            this.noun = noun;
+            return this;
+        }
+
+        public Builder n_v_adj_ad(String n_v_adj_ad) {
+            this.n_v_adj_ad = n_v_adj_ad;
             return this;
         }
 
         public Reply build() {
-            return new Reply(body, keyWord, date, worked);
+            return new Reply(id, body, date, special_deleted,
+                okt_pos, stopwords_deleted, noun, n_v_adj_ad);
         }
     }
 

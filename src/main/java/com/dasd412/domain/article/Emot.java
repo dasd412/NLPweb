@@ -30,21 +30,16 @@ public class Emot {//기사와 다대일 관계
 
     private int want;
 
-    @Column(name = "keyword", length = 20)
-    private String keyWord;
-
     protected Emot() {
     }
 
-    public Emot(String article_Index, int likes, int warm, int sad, int mad, int want,
-        String keyWord) {
+    public Emot(String article_Index, int likes, int warm, int sad, int mad, int want) {
         this.article_Index = article_Index;
         this.likes = likes;
         this.warm = warm;
         this.sad = sad;
         this.mad = mad;
         this.want = want;
-        this.keyWord = keyWord;
     }
 
     public String getArticle_Index() {
@@ -71,9 +66,6 @@ public class Emot {//기사와 다대일 관계
         return want;
     }
 
-    public String getKeyWord() {
-        return keyWord;
-    }
 
     @Override
     public int hashCode() {
@@ -101,7 +93,6 @@ public class Emot {//기사와 다대일 관계
             .append("sad", sad)
             .append("mad", mad)
             .append("want", want)
-            .append("keyWord", keyWord)
             .toString();
     }
 
@@ -114,7 +105,6 @@ public class Emot {//기사와 다대일 관계
         private int sad;
         private int mad;
         private int want;
-        private String keyWord;
 
         public Builder() {
         }
@@ -126,7 +116,6 @@ public class Emot {//기사와 다대일 관계
             this.sad = emot.sad;
             this.mad = emot.mad;
             this.want = emot.want;
-            this.keyWord = emot.keyWord;
         }
 
         public Builder articleIndex(String article_Index) {
@@ -167,15 +156,8 @@ public class Emot {//기사와 다대일 관계
             return this;
         }
 
-        public Builder keyWord(String keyWord) {
-            checkArgument(keyWord.length() > 0 && keyWord.length() <= 20,
-                "keyWord length should be 20>=x>0 ");
-            this.keyWord = keyWord;
-            return this;
-        }
-
         public Emot build() {
-            return new Emot(article_Index, likes, warm, sad, mad, want, keyWord);
+            return new Emot(article_Index, likes, warm, sad, mad, want);
         }
     }
 }

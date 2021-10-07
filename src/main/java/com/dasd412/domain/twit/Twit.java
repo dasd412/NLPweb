@@ -31,9 +31,6 @@ public class Twit {// N , 리트윗과 다대일 관계
     @Column(columnDefinition = "TEXT")
     private String worked;
 
-    @Column(columnDefinition = "TEXT")
-    private String deleted;
-
     private LocalDateTime date;
 
     @Column(name = "is_retwitted")
@@ -42,18 +39,39 @@ public class Twit {// N , 리트윗과 다대일 관계
     @Column(name = "origin_id", length = 20)
     private String originId;
 
+    @Column(columnDefinition = "TEXT")
+    private String special_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String okt_pos;
+
+    @Column(columnDefinition = "TEXT")
+    private String stopwords_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String noun;
+
+    @Column(columnDefinition = "TEXT")
+    private String n_v_adj_ad;
+
     protected Twit() {
     }
 
-    public Twit(String body, String hashtag, String worked, String deleted, LocalDateTime date,
-        boolean isRetwitted, String originId) {
+    public Twit(String id, String body, String hashtag, String worked, LocalDateTime date,
+        boolean isRetwitted, String originId, String special_deleted, String okt_pos,
+        String stopwords_deleted, String noun, String n_v_adj_ad) {
+        this.id = id;
         this.body = body;
         this.hashtag = hashtag;
         this.worked = worked;
-        this.deleted = deleted;
         this.date = date;
         this.isRetwitted = isRetwitted;
         this.originId = originId;
+        this.special_deleted = special_deleted;
+        this.okt_pos = okt_pos;
+        this.stopwords_deleted = stopwords_deleted;
+        this.noun = noun;
+        this.n_v_adj_ad = n_v_adj_ad;
     }
 
     @Override
@@ -80,14 +98,16 @@ public class Twit {// N , 리트윗과 다대일 관계
             .append("body", body)
             .append("hashtag", hashtag)
             .append("worked", worked)
-            .append("deleted", deleted)
             .append("date", date)
             .append("is re_twit", isRetwitted)
             .append("origin_id", originId)
-            .append("date", date)
+            .append("special_deleted", special_deleted)
+            .append("okt_pos", okt_pos)
+            .append("stopwords_deleted", stopwords_deleted)
+            .append("noun", noun)
+            .append("n_v_adj_ad", n_v_adj_ad)
             .toString();
     }
-
 
     public String getId() {
         return id;
@@ -105,10 +125,6 @@ public class Twit {// N , 리트윗과 다대일 관계
         return worked;
     }
 
-    public String getDeleted() {
-        return deleted;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
@@ -121,6 +137,25 @@ public class Twit {// N , 리트윗과 다대일 관계
         return originId;
     }
 
+    public String getSpecial_deleted() {
+        return special_deleted;
+    }
+
+    public String getOkt_pos() {
+        return okt_pos;
+    }
+
+    public String getStopwords_deleted() {
+        return stopwords_deleted;
+    }
+
+    public String getNoun() {
+        return noun;
+    }
+
+    public String getN_v_adj_ad() {
+        return n_v_adj_ad;
+    }
 
     static public class Builder {
 
@@ -128,10 +163,15 @@ public class Twit {// N , 리트윗과 다대일 관계
         private String body;
         private String hashtag;
         private String worked;
-        private String deleted;
         private LocalDateTime date;
         private boolean isRetwitted;
         private String originId;
+        private String special_deleted;
+        private String okt_pos;
+        private String stopwords_deleted;
+        private String noun;
+        private String n_v_adj_ad;
+
 
         public Builder() {
         }
@@ -141,10 +181,14 @@ public class Twit {// N , 리트윗과 다대일 관계
             this.body = twit.body;
             this.hashtag = twit.hashtag;
             this.worked = twit.worked;
-            this.deleted = twit.deleted;
             this.date = twit.date;
             this.isRetwitted = twit.isRetwitted;
             this.originId = twit.originId;
+            this.special_deleted = twit.special_deleted;
+            this.okt_pos = twit.okt_pos;
+            this.stopwords_deleted = twit.stopwords_deleted;
+            this.noun = twit.noun;
+            this.n_v_adj_ad = twit.n_v_adj_ad;
         }
 
         public Builder id(String id) {
@@ -171,11 +215,6 @@ public class Twit {// N , 리트윗과 다대일 관계
             return this;
         }
 
-        public Builder deleted(String deleted) {
-            checkArgument(deleted.length() > 0, "deleted length should be x>0");
-            this.deleted = deleted;
-            return this;
-        }
 
         public Builder date(LocalDateTime date) {
             this.date = date;
@@ -194,8 +233,35 @@ public class Twit {// N , 리트윗과 다대일 관계
             return this;
         }
 
+        public Builder special_deleted(String special_deleted) {
+            this.special_deleted = special_deleted;
+            return this;
+        }
+
+        public Builder okt_pos(String okt_pos) {
+            this.okt_pos = okt_pos;
+            return this;
+        }
+
+        public Builder stopwords_deleted(String stopwords_deleted) {
+            this.stopwords_deleted = stopwords_deleted;
+            return this;
+        }
+
+        public Builder noun(String noun) {
+            this.noun = noun;
+            return this;
+        }
+
+        public Builder n_v_adj_ad(String n_v_adj_ad) {
+            this.n_v_adj_ad = n_v_adj_ad;
+            return this;
+        }
+
         public Twit build() {
-            return new Twit(body, hashtag, worked, deleted, date, isRetwitted, originId);
+            return new Twit(id, body, hashtag, worked, date, isRetwitted, originId, special_deleted,
+                okt_pos, stopwords_deleted, noun,
+                n_v_adj_ad);
         }
 
     }

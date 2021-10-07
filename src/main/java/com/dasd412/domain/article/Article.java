@@ -3,8 +3,6 @@ package com.dasd412.domain.article;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.List;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,22 +31,44 @@ public class Article {//Emoji, reply와 1대 다 관계임
     @Column(length = 20)
     private String editor;
 
-    @Column(name = "keyword", length = 20)
-    private String keyWord;
-
     private LocalDateTime date;
+
+    @Column(columnDefinition = "TEXT")
+    private String body;
+
+    @Column(columnDefinition = "TEXT")
+    private String special_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String Okt_pos;
+
+    @Column(columnDefinition = "TEXT")
+    private String stopwords_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String noun;
+
+    @Column(columnDefinition = "TEXT")
+    private String n_v_adj_ad;
 
     protected Article() {
     }
 
-    public Article(String article_Index, String title, String comp, String editor, String keyWord,
-        LocalDateTime date) {
+    public Article(String article_Index, String title, String comp, String editor,
+        LocalDateTime date, String body,
+        String special_deleted, String okt_pos, String stopwords_deleted, String noun,
+        String n_v_adj_ad) {
         this.article_Index = article_Index;
         this.title = title;
         this.comp = comp;
         this.editor = editor;
-        this.keyWord = keyWord;
         this.date = date;
+        this.body = body;
+        this.special_deleted = special_deleted;
+        Okt_pos = okt_pos;
+        this.stopwords_deleted = stopwords_deleted;
+        this.noun = noun;
+        this.n_v_adj_ad = n_v_adj_ad;
     }
 
     public String getArticle_Index() {
@@ -67,14 +87,33 @@ public class Article {//Emoji, reply와 1대 다 관계임
         return editor;
     }
 
-    public String getKeyWord() {
-        return keyWord;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public String getSpecial_deleted() {
+        return special_deleted;
+    }
+
+    public String getOkt_pos() {
+        return Okt_pos;
+    }
+
+    public String getStopwords_deleted() {
+        return stopwords_deleted;
+    }
+
+    public String getNoun() {
+        return noun;
+    }
+
+    public String getN_v_adj_ad() {
+        return n_v_adj_ad;
+    }
 
     @Override
     public int hashCode() {
@@ -100,8 +139,13 @@ public class Article {//Emoji, reply와 1대 다 관계임
             .append("title", title)
             .append("comp", comp)
             .append("editor", editor)
-            .append("keyword", keyWord)
             .append("date", date)
+            .append("body", body)
+            .append("special_deleted", special_deleted)
+            .append("okt_pos", Okt_pos)
+            .append("stopwords_deleted", stopwords_deleted)
+            .append("noun", noun)
+            .append("n_v_adj_ad", n_v_adj_ad)
             .toString();
     }
 
@@ -111,8 +155,13 @@ public class Article {//Emoji, reply와 1대 다 관계임
         private String title;
         private String comp;
         private String editor;
-        private String keyWord;
         private LocalDateTime date;
+        private String body;
+        private String special_deleted;
+        private String okt_pos;
+        private String stopwords_deleted;
+        private String noun;
+        private String n_v_adj_ad;
 
         public Builder() {
         }
@@ -121,9 +170,14 @@ public class Article {//Emoji, reply와 1대 다 관계임
             this.article_Index = article.article_Index;
             this.title = article.title;
             this.comp = article.comp;
-            this.keyWord = article.keyWord;
             this.editor = article.editor;
             this.date = article.date;
+            this.body = article.body;
+            this.special_deleted = article.special_deleted;
+            this.okt_pos = article.Okt_pos;
+            this.stopwords_deleted = article.stopwords_deleted;
+            this.noun = article.noun;
+            this.n_v_adj_ad = article.n_v_adj_ad;
         }
 
         public Builder article_Index(String article_Index) {
@@ -147,13 +201,6 @@ public class Article {//Emoji, reply와 1대 다 관계임
             return this;
         }
 
-        public Builder keyWord(String keyWord) {
-            checkArgument(keyWord.length() > 0 && keyWord.length() <= 20,
-                "keyWord length should be 0<x<=20");
-            this.keyWord = keyWord;
-            return this;
-        }
-
         public Builder editor(String editor) {
             checkArgument(editor.length() > 0 && editor.length() <= 20,
                 "editor length should be 0<x<=20");
@@ -166,8 +213,40 @@ public class Article {//Emoji, reply와 1대 다 관계임
             return this;
         }
 
+        public Builder body(String body) {
+            this.body = body;
+            return this;
+        }
+
+        public Builder special_deleted(String special_deleted) {
+            this.special_deleted = special_deleted;
+            return this;
+        }
+
+        public Builder okt_pos(String okt_pos) {
+            this.okt_pos = okt_pos;
+            return this;
+        }
+
+        public Builder stopwords_deleted(String stopwords_deleted) {
+            this.stopwords_deleted = stopwords_deleted;
+            return this;
+        }
+
+        public Builder noun(String noun) {
+            this.noun = noun;
+            return this;
+        }
+
+        public Builder n_v_adj_ad(String n_v_adj_ad) {
+            this.n_v_adj_ad = n_v_adj_ad;
+            return this;
+        }
+
         public Article build() {
-            return new Article(article_Index, title, comp, editor, keyWord, date);
+            return new Article(article_Index, title, comp, editor, date, body,
+                special_deleted, okt_pos, stopwords_deleted, noun,
+                n_v_adj_ad);
         }
     }
 }

@@ -1,17 +1,12 @@
 package com.dasd412.domain.twit;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Objects;
-import java.util.List;
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -29,20 +24,33 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
     private String body;
 
     @Column(columnDefinition = "TEXT")
-    private String deleted;
+    private String special_deleted;
 
     @Column(columnDefinition = "TEXT")
-    private String worked;
+    private String okt_pos;
+
+    @Column(columnDefinition = "TEXT")
+    private String stopwords_deleted;
+
+    @Column(columnDefinition = "TEXT")
+    private String noun;
+
+    @Column(columnDefinition = "TEXT")
+    private String n_v_adj_ad;
 
 
     protected ReTwit() {
     }
 
-    public ReTwit(String id, String body, String worked, String deleted) {
+    public ReTwit(String id, String body, String special_deleted, String okt_pos,
+        String stopwords_deleted, String noun, String n_v_adj_ad) {
         this.id = id;
         this.body = body;
-        this.worked = worked;
-        this.deleted = deleted;
+        this.special_deleted = special_deleted;
+        this.okt_pos = okt_pos;
+        this.stopwords_deleted = stopwords_deleted;
+        this.noun = noun;
+        this.n_v_adj_ad = n_v_adj_ad;
     }
 
     @Override
@@ -67,8 +75,11 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
             .append("id", id)
             .append("body", body)
-            .append("worked", worked)
-            .append("deleted", deleted)
+            .append("special_deleted", special_deleted)
+            .append("okt_pos", okt_pos)
+            .append("stopwords_deleted", stopwords_deleted)
+            .append("noun", noun)
+            .append("n_v_adj_ad", n_v_adj_ad)
             .toString();
     }
 
@@ -80,20 +91,36 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         return body;
     }
 
-    public String getWorked() {
-        return worked;
+    public String getSpecial_deleted() {
+        return special_deleted;
     }
 
-    public String getDeleted() {
-        return deleted;
+    public String getOkt_pos() {
+        return okt_pos;
+    }
+
+    public String getStopwords_deleted() {
+        return stopwords_deleted;
+    }
+
+    public String getNoun() {
+        return noun;
+    }
+
+    public String getN_v_adj_ad() {
+        return n_v_adj_ad;
     }
 
     static public class Builder {
 
         private String id;
         private String body;
-        private String worked;
-        private String deleted;
+        private String special_deleted;
+        private String okt_pos;
+        private String stopwords_deleted;
+        private String noun;
+        private String n_v_adj_ad;
+
 
         public Builder() {
         }
@@ -101,8 +128,11 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
         public Builder(ReTwit reTwit) {
             this.id = reTwit.id;
             this.body = reTwit.body;
-            this.worked = reTwit.worked;
-            this.deleted = reTwit.deleted;
+            this.special_deleted = reTwit.special_deleted;
+            this.okt_pos = reTwit.okt_pos;
+            this.stopwords_deleted = reTwit.stopwords_deleted;
+            this.noun = reTwit.noun;
+            this.n_v_adj_ad = reTwit.n_v_adj_ad;
         }
 
         public Builder id(String id) {
@@ -117,20 +147,34 @@ public class ReTwit {// 1 , 트윗과 일대다 관계
             return this;
         }
 
-        public Builder worked(String worked) {
-            checkArgument(worked.length() > 0, "worked length should be x>0");
-            this.worked = worked;
+        public Builder special_deleted(String special_deleted) {
+            this.special_deleted = special_deleted;
             return this;
         }
 
-        public Builder deleted(String deleted) {
-            checkArgument(deleted.length() > 0, "deleted length should be x>0");
-            this.deleted = deleted;
+        public Builder okt_pos(String okt_pos) {
+            this.okt_pos = okt_pos;
+            return this;
+        }
+
+        public Builder stopwords_deleted(String stopwords_deleted) {
+            this.stopwords_deleted = stopwords_deleted;
+            return this;
+        }
+
+        public Builder noun(String noun) {
+            this.noun = noun;
+            return this;
+        }
+
+        public Builder n_v_adj_ad(String n_v_adj_ad) {
+            this.n_v_adj_ad = n_v_adj_ad;
             return this;
         }
 
         public ReTwit build() {
-            return new ReTwit(id, body, worked, deleted);
+            return new ReTwit(id, body, special_deleted, okt_pos, stopwords_deleted, noun,
+                n_v_adj_ad);
         }
     }
 }
