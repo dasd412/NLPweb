@@ -27,7 +27,7 @@ public class NLPRestController {
 
     @GetMapping("/api/nlp/twit/list/{id}")
     public ApiResult<List<TwitResponseDto>> getTwitListOfReTwit(@PathVariable String id) {
-        logger.info("get twit list of retwit : "+id);
+        logger.info("get twit list of retwit : " + id);
         List<Twit> twitList = twitService.readTwitByReTwitId(id);
 
         List<TwitResponseDto> dtoList = twitList.stream()

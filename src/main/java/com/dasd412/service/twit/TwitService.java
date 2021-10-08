@@ -32,7 +32,7 @@ public class TwitService {
 
     @Transactional(readOnly = true)
     public List<ReTwit> readReTwit(int start) {
-        int end = start+5;
+        int end = start + 5;
         Pageable limit = PageRequest.of(start, end);
         return reTwitRepository.findAllBy(limit);
     }
@@ -49,7 +49,7 @@ public class TwitService {
 
     @Transactional(readOnly = true)
     public List<Twit> readTwitByReTwitId(String reTwitId) {
-        logger.info("service : "+reTwitId);
+        logger.info("service : " + reTwitId);
         Optional<List<Twit>> found = twitRepository.findAllByReTwitId(reTwitId);
         return found.orElseThrow(NoSuchElementException::new);
     }
