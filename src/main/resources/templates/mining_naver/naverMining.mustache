@@ -1,18 +1,26 @@
 {{#layout}}
-
-  <input type="hidden" id="keywordIndex">
-  <form class="form-inline">
-    <div class="form-group">
-      <button type="button" id="naverPrev" style="color: green;"><i class="fas fa-angle-left"></i></button>
-      <div style="padding:0px 0px 0px 10px">
-        <button type="button" id="naverNext" style="color: green;"><i class="fas fa-angle-right"></i></button>
+  <div>
+    <input type="hidden" id="keywordIndex" value=0>
+    <form class="form-inline">
+      <div class="form-group">
+        <button type="button" id="naverPrev"><i class="fas fa-angle-left"></i></button>
+        <div style="padding-left:10px">
+          <button type="button" id="naverNext"><i class="fas fa-angle-right"></i></button>
+        </div>
+        <div id="keywordDivNaver" style="padding-left:10px">
+          <div class="d-inline p-2 bg-primary text-white" id="keywordNaver"></div>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
-  <div style="padding 20px 0px 0px 0px">
+
+  <div id="naverContent" style="padding-top:20px">
     {{{naverMining.content}}}
   </div>
 
+  <div id="naverComp" style="padding-top:10px">
+     <img src="/images/MJI.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;" id="comparisonNaver">
+  </div>
 
 {{/layout}}

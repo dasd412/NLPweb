@@ -1,0 +1,26 @@
+{{#layout}}
+  <div>
+    <input type="hidden" id="keywordIndexTwitter" value=0>
+    <form class="form-inline">
+      <div class="form-group">
+        <button type="button" id="twitterPrev"><i class="fas fa-angle-left"></i></button>
+        <div style="padding-left:10px">
+          <button type="button" id="twitterNext"><i class="fas fa-angle-right"></i></button>
+        </div>
+        <div id="keywordDivTwitter" style="padding-left:10px">
+          <div class="d-inline p-2 bg-primary text-white" id="keywordTwitter"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id="twitterContent" style="padding-top:20px">
+    {{{twitterMining.content}}}
+  </div>
+
+  <div id="twitterComp" style="padding-top:10px;">
+    <img src="/images/MJI.png"  style="height: auto; width: auto; max-width: 1200px; max-height: 500px;" id="comparisonTwitter">
+  </div>
+
+
+{{/layout}}

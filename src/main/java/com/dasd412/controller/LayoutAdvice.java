@@ -33,6 +33,11 @@ public class LayoutAdvice {//머스테시 레이아웃 자동화를 돕는 클�
         return new NaverLayout(compiler);
     }
 
+    @ModelAttribute("twitterMining")
+    public Mustache.Lambda twitterMining(Map<String, Object> model) {
+        return new TwitterLayout(compiler);
+    }
+
     static class Layout implements Mustache.Lambda {
 
         String content;
@@ -67,6 +72,25 @@ public class LayoutAdvice {//머스테시 레이아웃 자동화를 돕는 클�
         public void execute(Fragment fragment, Writer writer) throws IOException {
             content = fragment.execute();
             compiler.compile("{{>mining_naver/naverMining}}")
+                .execute(fragment.context(), writer);
+        }
+    }
+
+    static class TwitterLayout implements Mustache.Lambda {
+
+        String content;
+
+        private final Mustache.Compiler compiler;
+
+        public TwitterLayout(Compiler compiler) {
+            this.compiler = compiler;
+        }
+
+
+        @Override
+        public void execute(Fragment fragment, Writer writer) throws IOException {
+            content = fragment.execute();
+            compiler.compile("{{>mining_twitter/twitterMining}}")
                 .execute(fragment.context(), writer);
         }
     }
