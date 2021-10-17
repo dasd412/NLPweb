@@ -3,34 +3,15 @@ const naverArrow={
 
   init:function(){
     const _this=this;
-    const keyWord_dict={0:"MJI",1:"YSY",2:"LNY",3:"LJM",4:"HJP",5:"HKA"};
-
-    const name_dict={"MJI":"문재인","YSY":"윤석열","LNY":"이낙연","LJM":"이재명","HJP":"홍준표","HKA":"황교안"};
-    $("#naverPrev").on('click',function(){
-      let keyWord_index=parseInt($("#keywordIndex").val());
-      if(keyWord_index>0){
-        keyWord_index-=1;
-        $("#keywordIndex").val(parseInt(keyWord_index));
-      }
-      _this.selectNaverResult(keyWord_index,keyWord_dict,name_dict);
-    });
-
-    $("#naverNext").on('click',function(){
-      let keyWord_index=parseInt($("#keywordIndex").val());
-      if(keyWord_index<5){
-        keyWord_index+=1;
-         $("#keywordIndex").val(parseInt(keyWord_index));
-      }
-      _this.selectNaverResult(keyWord_index,keyWord_dict,name_dict);
-    });
-
-    let keyWord_index=parseInt($("#keywordIndex").val());
-    _this.selectNaverResult(keyWord_index,keyWord_dict,name_dict);
+    $("#MJI").on('click',function(){_this.selectNaverResult("MJI");});
+    $("#YSY").on('click',function(){_this.selectNaverResult("YSY");});
+    $("#LNY").on('click',function(){_this.selectNaverResult("LNY");});
+    $("#LJM").on('click',function(){_this.selectNaverResult("LJM");});
+    $("#HJP").on('click',function(){_this.selectNaverResult("HJP");});
+    $("#HKA").on('click',function(){_this.selectNaverResult("HKA");});
   },//init
 
-  selectNaverResult : function(keyWord_index,keyWord_dict,name_dict){
-
-    value=keyWord_dict[keyWord_index];
+  selectNaverResult : function(value){
 
     $.ajax({
         type: "GET",
@@ -38,12 +19,15 @@ const naverArrow={
         success: function(response) {
               $("#naverContent").empty();
               $("#naverContent").html(response);
+
+              $('#naverComp').empty();
+              $('#naverComp').append('<img src="/images/'+value+'.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+
+              $('#naverWord').empty();
+              $("#naverWord").append('<img src="/images/Ncloud'+value+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+              $("#naverWord").append('<img src="/images/sometrend'+value+'.png" style="padding-left:10px;height: auto; width: auto; max-width: 580px; max-height: 500px;">');
         }
     });
-
-    $("#keywordNaver").text(name_dict[value]);
-    img_url="/images/"+value+".png";
-    $("#comparisonNaver").attr("src", img_url);
   }
 
 };//const

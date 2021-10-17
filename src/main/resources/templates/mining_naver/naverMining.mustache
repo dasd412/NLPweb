@@ -1,15 +1,16 @@
 {{#layout}}
   <div>
-    <input type="hidden" id="keywordIndex" value=0>
+    <input type="hidden" id="keywordIndexNaver" value=0>
     <form class="form-inline">
       <div class="form-group">
-        <button type="button" id="naverPrev"><i class="fas fa-angle-left"></i></button>
-        <div style="padding-left:10px">
-          <button type="button" id="naverNext"><i class="fas fa-angle-right"></i></button>
-        </div>
-        <div id="keywordDivNaver" style="padding-left:10px">
-          <div class="d-inline p-2 bg-primary text-white" id="keywordNaver"></div>
-        </div>
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item" id="MJI">문재인</li>
+          <li class="list-group-item" id="YSY">윤석열</li>
+          <li class="list-group-item" id="LNY">이낙연</li>
+          <li class="list-group-item" id="LJM">이재명</li>
+          <li class="list-group-item" id="HJP">홍준표</li>
+          <li class="list-group-item" id="HKA">황교안</li>
+        </ul>
       </div>
     </form>
   </div>
@@ -20,7 +21,9 @@
   </div>
 
   <div id="naverComp" style="padding-top:10px">
-     <img src="/images/MJI.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;" id="comparisonNaver">
+  </div>
+
+  <div id="naverWord" style="padding-top:25px">
   </div>
 
 {{/layout}}
