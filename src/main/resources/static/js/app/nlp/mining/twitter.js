@@ -3,36 +3,15 @@ const twitterArrow={
 
   init:function(){
     const _this=this;
-    const keyWord_dict={0:"MJI",1:"YSY",2:"LNY",3:"LJM",4:"HJP",5:"HKA"};
-
-    const name_dict={"MJI":"문재인","YSY":"윤석열","LNY":"이낙연","LJM":"이재명","HJP":"홍준표","HKA":"황교안"};
-
-    $("#twitterPrev").on('click',function(){
-      let keyWord_index=parseInt($("#keywordIndexTwitter").val());
-      if(keyWord_index>0){
-        keyWord_index-=1;
-        $("#keywordIndexTwitter").val(parseInt(keyWord_index));
-      }
-      _this.selecttwitterResult(keyWord_index,keyWord_dict,name_dict);
-    });
-
-    $("#twitterNext").on('click',function(){
-      let keyWord_index=parseInt($("#keywordIndexTwitter").val());
-      if(keyWord_index<5){
-        keyWord_index+=1;
-         $("#keywordIndexTwitter").val(parseInt(keyWord_index));
-      }
-      _this.selecttwitterResult(keyWord_index,keyWord_dict,name_dict);
-    });
-
-    let keyWord_index=parseInt($("#keywordIndexTwitter").val());
-     _this.selecttwitterResult(keyWord_index,keyWord_dict,name_dict);
-
+    $("#Tw_MJI").on('click',function(){_this.selecttwitterResult("MJI");});
+    $("#Tw_YSY").on('click',function(){_this.selecttwitterResult("YSY");});
+    $("#Tw_LNY").on('click',function(){_this.selecttwitterResult("LNY");});
+    $("#Tw_LJM").on('click',function(){_this.selecttwitterResult("LJM");});
+    $("#Tw_HJP").on('click',function(){_this.selecttwitterResult("HJP");});
+    $("#Tw_HKA").on('click',function(){_this.selecttwitterResult("HKA");});
   },//init
 
-  selecttwitterResult : function(keyWord_index,keyWord_dict,name_dict){
-
-    value=keyWord_dict[keyWord_index];
+  selecttwitterResult : function(value){
 
     $.ajax({
         type: "GET",
@@ -40,13 +19,16 @@ const twitterArrow={
         success: function(response) {
               $("#twitterContent").empty();
               $("#twitterContent").html(response);
+
+              $('#twitterComp').empty();
+              $('#twitterComp').append('<img src="/images/'+value+'.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+
+              $('#twitterWord').empty();
+              $("#twitterWord").append('<img src="/images/cloud'+value+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+              $("#twitterWord").append('<img src="/images/sometrend'+value+'.png" style="padding-left:10px;height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+
         }
     });
-
-    $("#keywordTwitter").text(name_dict[value]);
-    img_url="/images/"+value+".png";
-    $("#comparisonTwitter").attr("src", img_url);
-
   }
 
 };//const
