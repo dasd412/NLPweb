@@ -1,113 +1,49 @@
-const options = {
-    type: 'bar',
-    data: {
-        labels: [],
-        datasets: [{
-            label: "",
-            backgroundColor: [],
-            borderColor: [],
-            data: []
-        }]
-    },
+const config = {
+  type: 'bar',
+  data: {
+          labels: ['윤석열', '이낙연', '이재명', '홍준표', '황교안'],
+          datasets: [{
+            label: '',
+            data: [0.34580631291531067, 0.1327654540044166, 0.24482311771410395, 0.21221944615281246, 0.06619936450469908],
+            backgroundColor: ['rgba(255, 99, 132, 0.5)',
+                                  'rgba(54, 162, 235, 0.5)',
+                                  'rgba(255, 206, 86, 0.5)',
+                                  'rgba(75, 192, 192, 0.5)',
+                                  'rgba(153, 102, 255, 0.5)'],
+            hoverOffset: 4
+          }]
+  },
 
-    options: {
-        title: {
-            display: true,
-            text: '지지율 차트',
-            fontSize: 20,
-            fontColor: 'rgba(46, 49, 49, 1)'
-        },
-        legend: {
-            labels: {
-                fontColor: 'rgba(83, 51, 237, 1)',
-                fontSize: 15
-            }
-        },
-        scales:
-        {
-            xAxes:
-                [{
-                    ticks: {
-                        fontColor: 'rgba(27, 163, 156, 1)',
-                        fontSize: '13'
-                    }
-                }],
-            yAxes: [{
-                ticks:
-                {
-                    beginAtZero: true,
-                    fontColor: 'rgba(246, 36, 89, 1)',
-                    fontSize: '13'
-                }
-            }]
-        }
+  options:{
+    title:{
+      display:true,
+      text:'네이버 지지율 09.21 - 09.27',
+      fontSize:20,
+      fontColor:'rgba(46, 49, 49, 1)'
+    },
+    legend: {
+             labels: {
+                 fontColor: 'rgba(83, 51, 237, 1)',
+                 fontSize: 15
+             }
     }
+
+  }
 };
 
-const backgroundColor = ['rgba(255, 99, 132, 0.5)',
-    'rgba(54, 162, 235, 0.5)',
-    'rgba(255, 206, 86, 0.5)',
-    'rgba(75, 192, 192, 0.5)',
-    'rgba(153, 102, 255, 0.5)',
-    'rgba(255, 159, 64, 0.5)'];
+//셀렉트 박스로 지정 가능하게 할 예정입니다.
 
-const borderColor = ['rgb(255, 99, 132,1.5)',
-    'rgba(54, 162, 235, 1.5)',
-    'rgba(255, 206, 86, 1.5)',
-    'rgba(75, 192, 192, 1.5)',
-    'rgba(153, 102, 255, 1.5)',
-    'rgba(255, 159, 64, 1.5)'];
+//#트위터 지지율 09.21 - 09.27
+//0.07138418006439708, 0.36745286561146473, 0.5668638690335713, 0.03344319941284449, 0.0016029807531660431
+
+//#네이버&트위터 통합 지지율 09.21 - 09.27
+//0.18805215685950696, 0.2608740248763238, 0.42899898184340857, 0.10909401670725122, 0.02919114681052689
 
 
 const ctx = document.getElementById('chart').getContext('2d');
-const chart = new Chart(ctx, options);
+const chart = new Chart(ctx, config);
 
-
-function resetChart(chart){
-    chartArray=[];
-    chart.data.labels=[];
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data=[];
-        dataset.backgroundColor=[];
-        dataset.borderColor=[];
-    });
-}
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-
-//function popData(chart) {//가장 오른쪽 그래프 하나 삭제
-//    chart.data.labels.pop();
-//    chart.data.datasets.forEach((dataset) => {
-//        dataset.data.pop();
-//    });
-//    chart.update();
-//}
-
-function drawBackgroundColor(chart, index) {
-    chart.data.datasets.forEach((dataset) => {
-        dataset.backgroundColor.push(backgroundColor[index%6]);
-        dataset.borderColor.push(borderColor[index%6 ]);
-    });
-
-    chart.update();
-}
-
-function getApprovalRatings(){
-  return JSON.parse(localStorage.getItem('approvalRatings'));
-}
 
 $(document).ready(function () {
-    ratings=getApprovalRatings();
-
-    for(let i=0;i<ratings.length;i++){
-      addData(chart,i+1,ratings[i]);
-      drawBackgroundColor(chart,i);
-    }
 
 });

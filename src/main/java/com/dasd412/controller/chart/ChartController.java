@@ -20,4 +20,9 @@ public class ChartController {
     public String viewResolveDoughnut(Model model) {
         return "/charts/doughnut";
     }
+
+    @GetMapping("/api/nlp/chart/line")
+    public String viewResolveLine(Model model) {
+        return "/charts/line";
+    }
 }
