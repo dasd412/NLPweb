@@ -2,12 +2,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+
+
   <div class="col-md-6">
+    <div>
+      <select class="form-select" aria-label="Default select example">
+        <option value="select_naver">네이버 지지율 09.21 - 09.27</option>
+        <option value="select_twitter">트위터 지지율 09.21 - 09.27</option>
+        <option value="select_both">네이버&트위터 통합 지지율 09.21 - 09.27</option>
+      </select>
+    </div>
   <div class="main">
     <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
       <canvas id="chart"></canvas>
     </div>
   </div>
   </div>
+
 {{/layout}}
 <script src="/js/app/charts/vertical.js"></script>
