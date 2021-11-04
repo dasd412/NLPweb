@@ -11,18 +11,18 @@ public class ChartController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/api/nlp/chart/vertical")
-    public String viewResolveVertical(Model model) {
-        return "/charts/vertical";
+    @GetMapping("/api/nlp/chart/vs4")
+    public String viewResolveVS4(Model model) {
+        return "/charts/vs4";
     }
 
-    @GetMapping("/api/nlp/chart/doughnut")
-    public String viewResolveDoughnut(Model model) {
-        return "/charts/doughnut";
+    @GetMapping("/api/nlp/chart/vsLJM")
+    public String viewResolveVsLJM(Model model) {
+        return "/charts/vsLJM";
     }
 
-    @GetMapping("/api/nlp/chart/line")
-    public String viewResolveLine(Model model) {
-        return "/charts/line";
+    @GetMapping("/api/nlp/chart/transitionMJI")
+    public String viewResolveTransitionMJI(Model model) {
+        return "/charts/transitionMJI";
     }
 }
