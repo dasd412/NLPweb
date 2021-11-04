@@ -3,6 +3,22 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <div class="col-md-6">
+    <div>
+      <select class="form-select" aria-label="Default select example" id="info_date_vs4">
+        <option value="09210928"> 0921 - 0928 </option>
+        <option value="09281005"> 0928 - 1005 </option>
+        <option value="10051012"> 1005 - 1012 </option>
+        <option value="10121019"> 1012 - 1019 </option>
+        <option value="10191029"> 1019 - 1029 </option>
+      </select>
+      <select class="form-select" aria-label="Default select example" id="info_source_vs4">
+        <option value="naver"> Naver </option>
+        <option value="twitter"> Twitter </option>
+        <option value="realMeter"> RealMeter </option>
+      </select>
+      <button type="button" class="btn btn-primary" id="vs4Btn">확정</button>
+    </div>
+
     <div class="main">
       <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
         <canvas id="chart"></canvas>
