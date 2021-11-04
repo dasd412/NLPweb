@@ -66,9 +66,9 @@ function changeDateAndSource(){
     if(sourceSelected=='naver'){
       dataInserted=[0.42859946030196766, 0.5719065276912119,0,0];
     }else if (sourceSelected=='twitter'){
-
-    }else if (sourceSelected=='realMeter'){
-
+      dataInserted=[0.3798131196520358, 0.6310559857437494,0,0];
+    }else if (sourceSelected=='both'){
+      dataInserted=[0.4240003049569937, 0.5777062864983428,0,0];
     }
     chart.data.datasets.forEach((dataset)=>{
        dataset.label='0921 - 0928';
@@ -79,8 +79,8 @@ function changeDateAndSource(){
        dataInserted=[0.4075637354231771, 0.5951261092091393,0,0];
      }else if (sourceSelected=='twitter'){
 
-     }else if (sourceSelected=='realMeter'){
-
+     }else if (sourceSelected=='both'){
+       dataInserted=[0.4075637354231771, 0.5951261092091393,0,0];
      }
     chart.data.datasets.forEach((dataset)=>{
            dataset.label='0928 - 1005';
@@ -91,8 +91,8 @@ function changeDateAndSource(){
          dataInserted=[0.2492525540170098, 0.32824564077951024, 0.1860864515562396, 0.23930070510532286];
        }else if (sourceSelected=='twitter'){
 
-       }else if (sourceSelected=='realMeter'){
-
+       }else if (sourceSelected=='both'){
+         dataInserted=[0.2492525540170098, 0.32824564077951024, 0.1860864515562396, 0.23930070510532286];
        }
     chart.data.datasets.forEach((dataset)=>{
            dataset.label='1005 - 1012';
@@ -103,8 +103,8 @@ function changeDateAndSource(){
          dataInserted=[0.23513195979659232, 0.35116614164617965, 0.2023908070868668, 0.21294505159352045];
        }else if (sourceSelected=='twitter'){
 
-       }else if (sourceSelected=='realMeter'){
-
+       }else if (sourceSelected=='both'){
+         dataInserted=[0.23513195979659232, 0.35116614164617965, 0.2023908070868668, 0.21294505159352045];
        }
     chart.data.datasets.forEach((dataset)=>{
            dataset.label='1012 - 1019';
@@ -114,9 +114,9 @@ function changeDateAndSource(){
        if(sourceSelected=='naver'){
          dataInserted=[0.23288472687788686, 0.34461709255223844, 0.19975605065057855, 0.2240048449758903];
        }else if (sourceSelected=='twitter'){
-
-       }else if (sourceSelected=='realMeter'){
-
+         dataInserted=[0.3195172019819002, 0.39449531068814764, 0.20437314604497142, 0.10418336259164351];
+       }else if (sourceSelected=='both'){
+         dataInserted=[0.2531906848966709, 0.35635632604450335, 0.2008599963906031, 0.19163944291315];
        }
     chart.data.datasets.forEach((dataset)=>{
            dataset.label='1019 - 1029';
