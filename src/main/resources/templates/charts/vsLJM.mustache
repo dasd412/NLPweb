@@ -2,35 +2,54 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-
-
   <div class="col-md-6">
-    <div>
-      <select class="form-select" aria-label="Default select example" id="info_date_vsLJM">
-        <option value="09210928"> 0921 - 0928 </option>
-        <option value="09281005"> 0928 - 1005 </option>
-        <option value="10051012"> 1005 - 1012 </option>
-        <option value="10121019"> 1012 - 1019 </option>
-        <option value="10191029"> 1019 - 1029 </option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="candidate">
-        <option value="candidate_YSY"> 윤석열 VS 이재명 </option>
-        <option value="candidate_HJP"> 홍준표 VS 이재명  </option>
-        <option value="candidate_WHR"> 원희룡 VS 이재명  </option>
-        <option value="candidate_RSM"> 유승민 VS 이재명  </option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="info_source_vsLJM">
-        <option value="naver"> Naver </option>
-        <option value="twitter"> Twitter </option>
-        <option value="both"> Both </option>
-      </select>
+        <form>
+          <div class="form-group row">
+
+            <div id="startDateContainerLJM">
+              <div class="col-xs-2">
+                <i class="far fa-calendar"></i>
+                <label for="ex1">시작일</label>
+                <input class="form-control" id="startDateLJM" type="text" placeholder="Ex : 19991231">
+              </div>
+            </div>
+
+            <div id="endDateContainerLJM" style="padding-left:10px">
+              <div class="col-xs-2">
+                <i class="far fa-calendar"></i>
+                <label for="ex1">종료일</label>
+                <input class="form-control" id="endDateLJM" type="text" placeholder="Ex : 20020301">
+              </div>
+            </div>
+
+            <div id="candidateContainerLJM">
+              <div class="col-xs-2">
+                <i class="fas fa-user-tie"></i>
+                <label for="ex1">후보</label>
+                <input class="form-control" id="candidateLJM" type="text" placeholder="Ex : 이재명,홍준표,윤석열">
+              </div>
+            </div>
+
+            <div id="sourceContainerLJM" style="padding-left:10px">
+              <div class="col-xs-2">
+                <i class="fas fa-database"></i>
+                <label for="ex1">출처</label>
+                <input class="form-control" id="sourceLJM" type="text" placeholder="NAVER,TWITTER,BOTH">
+              </div>
+            </div>
+          </div>
+        </form>
+
+    <div style="margin-left:-10px">
       <button type="button" class="btn btn-primary" id="vsLJMBtn">확정</button>
     </div>
-  <div class="main">
-    <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
-      <canvas id="chart"></canvas>
+
+    <div class="main">
+      <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
+        <canvas id="chart"></canvas>
+      </div>
     </div>
-  </div>
+
   </div>
 
 {{/layout}}

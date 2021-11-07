@@ -3,19 +3,37 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <div class="col-md-6">
-    <div>
-      <select class="form-select" aria-label="Default select example" id="info_date_vs4">
-        <option value="09210928"> 0921 - 0928 </option>
-        <option value="09281005"> 0928 - 1005 </option>
-        <option value="10051012"> 1005 - 1012 </option>
-        <option value="10121019"> 1012 - 1019 </option>
-        <option value="10191029"> 1019 - 1029 </option>
-      </select>
-      <select class="form-select" aria-label="Default select example" id="info_source_vs4">
-        <option value="naver"> Naver </option>
-        <option value="twitter"> Twitter </option>
-        <option value="both"> Both </option>
-      </select>
+    <form>
+      <div class="form-group row">
+
+        <div id="startDateContainerVS4">
+          <div class="col-xs-2">
+            <i class="far fa-calendar"></i>
+            <label for="ex1">시작일</label>
+            <input class="form-control" id="startDateVS4" type="text" placeholder="Ex : 19991231">
+          </div>
+        </div>
+
+        <div id="endDateContainerVS4" style="padding-left:10px">
+          <div class="col-xs-2">
+            <i class="far fa-calendar"></i>
+            <label for="ex1">종료일</label>
+            <input class="form-control" id="endDateVS4" type="text" placeholder="Ex : 20020301">
+          </div>
+        </div>
+
+        <div id="sourceContainerVS4">
+          <div class="col-xs-2">
+            <i class="fas fa-database"></i>
+            <label for="ex1">출처</label>
+            <input class="form-control" id="sourceVS4" type="text" placeholder="NAVER,TWITTER,BOTH">
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div style="margin-left:-10px">
       <button type="button" class="btn btn-primary" id="vs4Btn">확정</button>
     </div>
 
