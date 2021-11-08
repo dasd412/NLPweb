@@ -75,8 +75,19 @@ const config = {
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
-function changeSource(){
-  //let sourceSelected=$("#info_source_MJI option:selected").val();
+function submitParametersOfMJI(){
+  //READ value
+  const sourceMJI=$("#sourceMJI").val();
+
+  //exception guard
+  if (sourceMJI==""){
+    swal("출처를 제대로 입력해주세요","ex:NAVER","error");
+    return;
+  }
+
+  const params={
+    source:sourceMJI
+  };
 
   //reInit
   chart.data.datasets.forEach((dataset) => {
@@ -84,9 +95,20 @@ function changeSource(){
           dataset.data=[];
   });
 
+  $.ajax({
+    url:"/api/nlp/charts/MJI/params",
+    type:"get",
+    data:params,
+    contentType:'application/json;charset=utf-8'
+  }).done(function(data){
+
+  }).fail(function(data){
+
+  });
+
   //chart.update();
 }
 
 $(document).ready(function () {
-  $("#transitionBtn").attr('onclick','changeSource()');
+  $("#MJIBtn").attr('onclick','submitParametersOfMJI()');
 });

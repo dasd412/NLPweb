@@ -52,8 +52,33 @@ const config = {
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
-function changeDateAndCandidate(){
-  //read Value of select boxes
+function submitParametersOfLJM(){
+  //read Value
+  const startDateLJM=$("#startDateLJM").val();
+  const endDateLJM=$("#endDateLJM").val();
+  const candidateLJM=$("#candidateLJM").val();
+  const sourceLJM=$("#sourceLJM").val();
+
+  //exception guard
+  if (startDateLJM==""){
+    swal("시작일을 입력해주세요","ex:19850204","error");
+    return;
+  }
+
+  if (endDateLJM==""){
+    swal("종료일을 입력해주세요","ex:19850204","error");
+    return;
+  }
+
+  if (candidateLJM==""){
+    swal("후보를 입력해주세요","ex:홍준표,윤석열","error");
+    return;
+  }
+
+  if (sourceLJM==""){
+    swal("출처를 제대로 입력해주세요","ex:NAVER","error");
+    return;
+  }
 
   //reInit
   chart.data.labels=[];
@@ -61,11 +86,30 @@ function changeDateAndCandidate(){
           dataset.label='';
           dataset.data=[];
   });
-  dataInserted=[];
+
+  const params={
+    startDate:startDateLJM,
+    endDate:endDateLJM,
+    candidate:candidateLJM,
+    source:sourceLJM
+  };
+
+  $.ajax({
+    url:"/api/nlp/charts/LJM/params",
+    type:"get",
+    data:params,
+    contentType:'application/json;charset=utf-8'
+  }).done(function(data){
+
+  }).fail(function(data){
+
+  });
+
+
 
  // chart.update();
 }
 
 $(document).ready(function () {
-  $('#vsLJMBtn').attr('onclick', 'changeDateAndCandidate()');
+  $('#vsLJMBtn').attr('onclick', 'submitParametersOfLJM()');
 });

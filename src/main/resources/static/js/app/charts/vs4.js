@@ -46,7 +46,7 @@ const config = {
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
-function submitParameters(){
+function submitParametersOfVs4(){
   //read Value
   const startDateVS4=$("#startDateVS4").val();
   const endDateVS4=$("#endDateVS4").val();
@@ -94,5 +94,5 @@ function submitParameters(){
 }
 
 $(document).ready(function () {
-  $('#vs4Btn').attr('onclick', 'submitParameters()');
+  $('#vs4Btn').attr('onclick', 'submitParametersOfVs4()');
 });

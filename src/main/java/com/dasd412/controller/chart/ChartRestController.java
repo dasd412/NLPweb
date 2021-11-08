@@ -55,4 +55,22 @@ public class ChartRestController {
 
 
     }
+
+    @GetMapping("/api/nlp/charts/LJM/params")
+    public void getDataOfLJM(@RequestParam Map<String, String> params) {
+        logger.info("Get Mapped LJM data" + params.toString());
+        String startDate = params.get("startDate");
+        String endDate = params.get("endDate");
+        String candidate = params.get("candidate");
+        String source = params.get("source");
+
+
+    }
+
+    @GetMapping("/api/nlp/charts/MJI/params")
+    public void getDataOfMJI(@RequestParam Map<String, String> params) {
+        logger.info("Get Mapped MJI data" + params.toString());
+        String source = params.get("source");
+
+    }
 }
