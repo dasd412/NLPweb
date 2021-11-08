@@ -46,19 +46,53 @@ const config = {
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
-function changeDateAndSource(){
+function submitParameters(){
   //read Value
+  const startDateVS4=$("#startDateVS4").val();
+  const endDateVS4=$("#endDateVS4").val();
+  const sourceVS4=$("#sourceVS4").val();
+
+  //exception guard
+  if (startDateVS4==""){
+    swal("시작일을 입력해주세요","ex:19850204","error");
+    return;
+  }
+
+  if (endDateVS4==""){
+    swal("종료일을 입력해주세요","ex:19850204","error");
+    return;
+  }
+
+  if (sourceVS4==""){
+    swal("출처를 제대로 입력해주세요","ex:NAVER","error");
+    return;
+  }
+
   //reInit
   chart.data.datasets.forEach((dataset) => {
           dataset.label='';
           dataset.data=[];
   });
+  const params={
+    startDate:startDateVS4,
+    endDate:endDateVS4,
+    source:sourceVS4
+  };
 
-  dataInserted=[];
+  $.ajax({
+    url:"/api/nlp/charts/vs4/params",
+    type:"get",
+    data:params,
+    contentType:'application/json;charset=utf-8'
+  }).done(function(data){
+
+  }).fail(function(data){
+
+  });
 
   //chart.update();
 }
 
 $(document).ready(function () {
-  $('#vs4Btn').attr('onclick', 'changeDateAndSource()');
+  $('#vs4Btn').attr('onclick', 'submitParameters()');
 });

@@ -10,9 +10,12 @@ import java.util.List;
 import com.dasd412.controller.ApiResult;
 import com.dasd412.service.chart.ChartService;
 
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -41,5 +44,15 @@ public class ChartRestController {
             dtoList.add(new DummyDTO(dummy));
         }
         return ApiResult.OK(dtoList);
+    }
+
+    @GetMapping("/api/nlp/charts/vs4/params")
+    public void getDataOfVS4(@RequestParam Map<String, String> params) {
+        logger.info("Get Mapped vs4 data" + params.toString());
+        String startDate = params.get("startDate");
+        String endDate = params.get("endDate");
+        String source = params.get("source");
+
+
     }
 }
