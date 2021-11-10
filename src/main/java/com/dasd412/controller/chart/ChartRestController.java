@@ -1,9 +1,9 @@
 package com.dasd412.controller.chart;
 
 import com.dasd412.domain.charts.DummyData;
-import com.dasd412.domain.twit.ReTwit;
-import com.dasd412.domain.twit.Twit;
-import com.dasd412.service.twit.TwitService;
+import com.dasd412.domain.charts.LjmEntity;
+import com.dasd412.service.chart.PythonExecuteService;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +11,10 @@ import com.dasd412.controller.ApiResult;
 import com.dasd412.service.chart.ChartService;
 
 import java.util.Map;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChartRestController {
 
     private final ChartService chartService;
+    private final PythonExecuteService pythonExecuteService;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public ChartRestController(ChartService chartService) {
+    public ChartRestController(ChartService chartService,
+        PythonExecuteService pythonExecuteService) {
         this.chartService = chartService;
+        this.pythonExecuteService = pythonExecuteService;
     }
 
     @GetMapping("/api/nlp/charts/random")
@@ -53,18 +56,21 @@ public class ChartRestController {
         String endDate = params.get("endDate");
         String source = params.get("source");
 
-
     }
 
     @GetMapping("/api/nlp/charts/LJM/params")
-    public void getDataOfLJM(@RequestParam Map<String, String> params) {
+    public ApiResult<LjmDTO> getDataOfLJM(@RequestParam Map<String, String> params)
+        throws Exception {
         logger.info("Get Mapped LJM data" + params.toString());
         String startDate = params.get("startDate");
         String endDate = params.get("endDate");
         String candidate = params.get("candidate");
         String source = params.get("source");
 
-
+        LjmDTO dto = new LjmDTO(
+            pythonExecuteService.executeAndConvertPython(startDate, endDate, candidate, source)
+                .orElseThrow(Exception::new));
+        return ApiResult.OK(dto);
     }
 
     @GetMapping("/api/nlp/charts/MJI/params")

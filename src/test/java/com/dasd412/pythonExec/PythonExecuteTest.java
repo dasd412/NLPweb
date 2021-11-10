@@ -13,18 +13,18 @@ public class PythonExecuteTest {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test
-    public void executePython()throws Exception {
+    public void executePython() throws Exception {
 
-        final String command="py";
-        final String path="C:\\Users\\dasd4\\Desktop\\python_exceute\\test.py";
-        String startDate="20211009";
-        String endDate="20211020";
-        String candidates="이재명,윤석열";
-        String source="NAVER";
+        final String command = "py";
+        final String path = "C:\\Users\\dasd4\\Desktop\\python_exceute\\test.py";
+        String startDate = "20211009";
+        String endDate = "20211020";
+        String candidates = "이재명,윤석열";
+        String source = "NAVER";
 
-        List<String>lineBucket=new ArrayList<>();
+        List<String> lineBucket = new ArrayList<>();
 
-        String[]cmdArray={command,path,startDate,endDate,candidates,source};
+        String[] cmdArray = {command, path, startDate, endDate, candidates, source};
 
         ProcessBuilder builder = new ProcessBuilder(cmdArray);
         Process process = builder.start();
@@ -35,12 +35,12 @@ public class PythonExecuteTest {
         while ((line = br.readLine()) != null) {
             lineBucket.add(line);
         }
-        if(exitVal != 0) {
+        if (exitVal != 0) {
             // 비정상 종료
             System.out.println("서브 프로세스가 비정상 종료되었다.");
         }
 
-        for(String s:lineBucket){
+        for (String s : lineBucket) {
             System.out.println(s);
         }
 

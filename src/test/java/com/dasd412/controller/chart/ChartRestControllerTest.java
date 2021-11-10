@@ -111,4 +111,20 @@ public class ChartRestControllerTest {
         logger.info("retwit list" + result);
     }
 
+    @Test
+    public void testPythonExecute() throws Exception{
+        //given
+        String url = "http://localhost" + port + "/api/nlp/charts/LJM/params";
+
+        //when
+        String result=mockMvc.perform(get(url).contentType(MediaType.APPLICATION_JSON_UTF8)
+            .param("startDate","20211009").param("endDate","20211109")
+            .param("candidate","이재명,윤석열").param("source","NAVER"))
+            .andExpect(status().isOk()).andDo(print()).andReturn().getResponse()
+            .getContentAsString();
+
+        //then
+        logger.info("result"+result);
+
+    }
 }
