@@ -16,13 +16,13 @@ public class PythonExecutor {
     private final String PATH = "C:\\Users\\dasd4\\Desktop\\python_exceute\\test.py";
     private final String ENCODE = "CP949";
 
-    public List<String> executePython(String startDate, String endDate, String candidates,
+    public List<String> executePython(String date, String candidates,
         String source) throws Exception {
         logger.info("execute python file");
 
         List<String> resultList = new ArrayList<>();
 
-        String[] cmdArray = {COMMAND, PATH, startDate, endDate, candidates, source};
+        String[] cmdArray = {COMMAND, PATH, date, candidates, source};
 
         ProcessBuilder builder = new ProcessBuilder(cmdArray);
         Process process = builder.start();

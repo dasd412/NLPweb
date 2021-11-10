@@ -24,10 +24,10 @@ public class PythonExecuteService {
         this.converter = converter;
     }
 
-    public Optional<LjmEntity> executeAndConvertPython(String startDate, String endDate,
+    public Optional<LjmEntity> executeAndConvertPython(String date,
         String candidate, String source) {
         try {
-            List<String> result = executor.executePython(startDate, endDate, candidate, source);
+            List<String> result = executor.executePython(date, candidate, source);
             return Optional.of(converter.convertLJM(result));
         } catch (Exception e) {
             logger.error("failed reading python!!");

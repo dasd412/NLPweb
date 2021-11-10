@@ -54,29 +54,23 @@ const chart = new Chart(ctx, config);
 
 function submitParametersOfLJM(){
   //read Value
-  const startDateLJM=$("#startDateLJM").val();
-  const endDateLJM=$("#endDateLJM").val();
+  const dateLJM=$("#dateLJM").val();
   const candidateLJM=$("#candidateLJM").val();
   const sourceLJM=$("#sourceLJM").val();
 
   //exception guard
-  if (startDateLJM==""){
-    swal("시작일을 입력해주세요","ex:19850204","error");
-    return;
-  }
-
-  if (endDateLJM==""){
-    swal("종료일을 입력해주세요","ex:19850204","error");
+  if (dateLJM==""){
+    swal("날짜를 입력해주세요","ex:19850204 와 같은 형식으로 입력해주세요.","error");
     return;
   }
 
   if (candidateLJM==""){
-    swal("후보를 입력해주세요","ex:홍준표,윤석열","error");
+    swal("후보를 입력해주세요","ex:홍준표 윤석열 <-띄어쓰기로 분리해서 입력해주세요.","error");
     return;
   }
 
   if (sourceLJM==""){
-    swal("출처를 제대로 입력해주세요","ex:NAVER","error");
+    swal("출처를 제대로 입력해주세요","NAVER TWITTER BOTH 중 하나를 입력해주세요.","error");
     return;
   }
 
@@ -88,8 +82,7 @@ function submitParametersOfLJM(){
   });
 
   const params={
-    startDate:startDateLJM,
-    endDate:endDateLJM,
+    date:dateLJM,
     candidate:candidateLJM,
     source:sourceLJM
   };
@@ -100,12 +93,10 @@ function submitParametersOfLJM(){
     data:params,
     contentType:'application/json;charset=utf-8'
   }).done(function(data){
-
+    console.log(data["response"]["someText"]);
   }).fail(function(data){
 
   });
-
-
 
  // chart.update();
 }

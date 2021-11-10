@@ -62,13 +62,12 @@ public class ChartRestController {
     public ApiResult<LjmDTO> getDataOfLJM(@RequestParam Map<String, String> params)
         throws Exception {
         logger.info("Get Mapped LJM data" + params.toString());
-        String startDate = params.get("startDate");
-        String endDate = params.get("endDate");
+        String date = params.get("date");
         String candidate = params.get("candidate");
         String source = params.get("source");
 
         LjmDTO dto = new LjmDTO(
-            pythonExecuteService.executeAndConvertPython(startDate, endDate, candidate, source)
+            pythonExecuteService.executeAndConvertPython(date, candidate, source)
                 .orElseThrow(Exception::new));
         return ApiResult.OK(dto);
     }
