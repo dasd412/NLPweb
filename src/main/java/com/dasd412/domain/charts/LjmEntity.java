@@ -1,24 +1,25 @@
 package com.dasd412.domain.charts;
 
 import java.util.List;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class LjmEntity {
-    private final List<String> someText;
+    private final List<Double> ratings;
 
-    public LjmEntity(List<String> someText) {
-        this.someText = someText;
+    public LjmEntity(List<Double> ratings) {
+        this.ratings = ratings;
     }
 
-    public List<String> getSomeText() {
-        return someText;
+    public List<Double> getRatings() {
+        return ratings;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("test", someText)
-            .toString();
+                .append("ratings", ratings)
+                .toString();
     }
 }

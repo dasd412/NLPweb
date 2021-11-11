@@ -1,30 +1,32 @@
 package com.dasd412.controller.chart;
 
 import com.dasd412.domain.charts.LjmEntity;
+
 import java.util.List;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class LjmDTO {
 
-    private final List<String> someText;
+    private final List<Double> ratings;
 
-    public LjmDTO(List<String> someText) {
-        this.someText = someText;
+    public LjmDTO(List<Double> ratings) {
+        this.ratings = ratings;
     }
 
     public LjmDTO(LjmEntity entity) {
-        this.someText = entity.getSomeText();
+        this.ratings = entity.getRatings();
     }
 
-    public List<String> getSomeText() {
-        return someText;
+    public List<Double> getRatings() {
+        return ratings;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("test", someText)
-            .toString();
+                .append("ratings", ratings)
+                .toString();
     }
 }
