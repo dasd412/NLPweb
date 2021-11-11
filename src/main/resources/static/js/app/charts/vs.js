@@ -4,7 +4,7 @@ const config = {
           labels: ['윤석열','이재명'],
           datasets: [
               {
-                        label:'0921 - 0928',
+                        label:'09-21 ~ 09-28',
                         data:[45.1, 54.8],
                         fill:false,
                          backgroundColor: [
@@ -20,7 +20,7 @@ const config = {
   options:{
     title:{
       display:true,
-      text:'국민의 힘 1인 VS 이재명',
+      text:'후보 들의 지지율을 알아보세요.',
       fontSize:20,
       fontColor:'rgba(46, 49, 49, 1)'
     },
@@ -79,14 +79,6 @@ function submitParameters(){
     swal("출처를 제대로 입력해주세요","NAVER TWITTER BOTH 중 하나를 입력해주세요.","error");
     return;
   }
-
-  //reInit
-  chart.data.labels=[];
-  chart.data.datasets.forEach((dataset) => {
-          dataset.label='';
-          dataset.data=[];
-  });
-
   const params={
     startDate:startDate,
     endDate:endDate,
@@ -100,12 +92,25 @@ function submitParameters(){
     data:params,
     contentType:'application/json;charset=utf-8'
   }).done(function(data){
-    console.log(data[response][ratings]);
-  }).fail(function(data){
+    const split=candidate.split(' ');
+    const ratings=data.response.ratings;
 
+    //reInit
+    chart.data.labels=[];
+    chart.data.datasets.forEach((dataset) => {
+            dataset.label='';
+            dataset.data=[];
+    });
+
+
+    chart.data.labels=split;
+    chart.data.datasets.forEach((dataset) => {
+        dataset.label=startDate+" ~ "+endDate;
+        dataset.data=ratings;
+    });
+
+    chart.update();
   });
-
- // chart.update();
 }
 
 $(document).ready(function () {
