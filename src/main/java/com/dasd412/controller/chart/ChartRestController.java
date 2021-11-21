@@ -67,9 +67,15 @@ public class ChartRestController {
     }
 
     @GetMapping("/api/nlp/charts/MJI/params")
-    public void getDataOfMJI(@RequestParam Map<String, String> params) {
+    public ApiResult<MjiDTO> getDataOfMJI(@RequestParam Map<String, String> params) throws Exception {
         logger.info("Get Mapped MJI data" + params.toString());
+        String startDate=params.get("startDate");
+        String endDate=params.get("endDate");
         String source = params.get("source");
 
+        MjiDTO dto=new MjiDTO((pythonExecuteService.executeMjiPython(startDate,endDate,source)
+                .orElseThrow(Exception::new)));
+
+        return ApiResult.OK(dto);
     }
 }

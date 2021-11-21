@@ -1,6 +1,7 @@
 package com.dasd412.service.chart;
 
 import com.dasd412.domain.charts.LjmEntity;
+import com.dasd412.domain.charts.MjiEntity;
 import com.dasd412.domain.charts.PythonExecutor;
 import com.dasd412.domain.charts.PythonResultConverter;
 
@@ -34,6 +35,18 @@ public class PythonExecuteService {
             return Optional.of(converter.convertLJM(result, split.length));
         } catch (Exception e) {
             logger.error("failed reading python!!");
+        }
+        return Optional.empty();
+    }
+
+    public Optional<MjiEntity>executeMjiPython(String startDate, String endDate,String source){
+
+        try{
+            List<String>result= executor.executeMjiPython(startDate, endDate, source);
+            logger.info("result mji : "+result);
+
+        } catch (Exception e) {
+            logger.info("failed mji python");
         }
         return Optional.empty();
     }

@@ -49,6 +49,8 @@ const config = {
   }
 };
 
+const source_set=["naver","twitter","both"];
+
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
@@ -57,7 +59,7 @@ function submitParameters(){
   const startDate=$("#startDate").val();
   const endDate=$("#endDate").val();
   const candidate=$("#candidate").val();
-  const source=$("#source").val();
+  const source=$("#source option:selected").val();
 
   //exception guard
   if (startDate==""){
@@ -75,10 +77,6 @@ function submitParameters(){
     return;
   }
 
-  if (source==""){
-    swal("출처를 제대로 입력해주세요","NAVER TWITTER BOTH 중 하나를 입력해주세요.","error");
-    return;
-  }
   const params={
     startDate:startDate,
     endDate:endDate,

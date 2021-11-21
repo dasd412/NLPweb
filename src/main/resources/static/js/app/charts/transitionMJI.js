@@ -29,29 +29,7 @@ const config = {
               backgroundColor:'gray',
               borderColor:'gray',
               tension:0.2
-            },
-
-            {
-              label:'리얼미터 긍정',
-              //10월 1주차는 중복으로 취급했음
-              data:[0.402,0.404,0.392,0.400,0.387],
-              fill:false,
-              backgroundColor:'cyan',
-              borderColor:'cyan',
-              tension:0.2
-            },
-
-            {
-              label:'리얼미터 부정',
-              //10월 1주차는 중복으로 취급했음
-              data:[0.559,0.560,0.582,0.567,0.576],
-              fill:false,
-              backgroundColor:'orange',
-              borderColor:'orange',
-              tension:0.2
             }
-
-
           ]
   },
 
@@ -77,15 +55,23 @@ const chart = new Chart(ctx, config);
 
 function submitParametersOfMJI(){
   //READ value
-  const sourceMJI=$("#sourceMJI").val();
-
+  const startDate=$("#startDateMJI").val();
+  const endDate=$("#endDateMJI").val();
+  const sourceMJI=$("#sourceMJI option:selected").val();
   //exception guard
-  if (sourceMJI==""){
-    swal("출처를 제대로 입력해주세요","ex:NAVER","error");
+  if (startDate==""){
+    swal("시작일을 입력해주세요","ex:02-01 와 같은 형식으로 입력해주세요.","error");
     return;
   }
 
+  if (endDate==""){
+      swal("종료일을 입력해주세요","ex:02-31 와 같은 형식으로 입력해주세요.","error");
+      return;
+  }
+
   const params={
+    startDate:startDate,
+    endDate:endDate,
     source:sourceMJI
   };
 
@@ -101,7 +87,7 @@ function submitParametersOfMJI(){
     data:params,
     contentType:'application/json;charset=utf-8'
   }).done(function(data){
-
+    console.log(data);
   }).fail(function(data){
 
   });
