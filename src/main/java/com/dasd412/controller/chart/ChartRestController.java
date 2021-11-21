@@ -59,6 +59,7 @@ public class ChartRestController {
         String endDate = params.get("endDate");
         String candidate = params.get("candidate");
         String source = params.get("source");
+        logger.info("vs"+startDate+" "+ endDate+" "+" "+candidate+" "+source);
 
         LjmDTO dto = new LjmDTO(
                 pythonExecuteService.executeAndConvertPython(startDate, endDate, candidate, source)
@@ -72,6 +73,7 @@ public class ChartRestController {
         String startDate=params.get("startDate");
         String endDate=params.get("endDate");
         String source = params.get("source");
+        logger.info("mji"+startDate+" "+ endDate+" "+source);
 
         MjiDTO dto=new MjiDTO((pythonExecuteService.executeMjiPython(startDate,endDate,source)
                 .orElseThrow(Exception::new)));

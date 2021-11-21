@@ -23,7 +23,7 @@ public class PythonExecutor {
 
         List<String> resultList = new ArrayList<>();
 
-        String[] cmdArray = {COMMAND, PATH, "vs", candidates, startDate, endDate,source};
+        String[] cmdArray = {COMMAND, PATH, candidates, startDate, endDate,source};
 
         ProcessBuilder builder = new ProcessBuilder(cmdArray);
         Process process = builder.start();
@@ -42,7 +42,7 @@ public class PythonExecutor {
         logger.info("execute python mji");
 
         List<String>result_Mji=new ArrayList<>();
-        String[]cmd={COMMAND, PATH,"mji",startDate,endDate,source};
+        String[]cmd={COMMAND, PATH,startDate,endDate,source};
 
         ProcessBuilder builder = new ProcessBuilder(cmd);
         Process process = builder.start();
@@ -54,7 +54,6 @@ public class PythonExecutor {
         while ((line = br.readLine()) != null) {
             result_Mji.add(line);
         }
-        System.out.println("mji"+result_Mji);
         return result_Mji;
     }
 
