@@ -1,12 +1,12 @@
 const config = {
-  type: 'line',
+  type: 'horizontalBar',
   data: {
-          labels: ['09-21 ~ 09-28','09-28 ~ 10-05','10-05 ~ 10-12','10-12~10-19','10-19~10-29'],
+          labels: ['09-21 ~ 09-28'],
           datasets:
           [
             {
               label:'긍정',
-              data:[0.22223971865732356,0.20322654989628947,0.20294457840773197,0.20855453059082377,0.21601918617578858],
+              data:[0.2481434180029327],
               fill:false,
               backgroundColor:'blue',
               borderColor:'blue',
@@ -14,7 +14,7 @@ const config = {
             },
             {
               label:'부정',
-              data:[0.5089887935333176,0.5313513098256126,0.5400615577643161,0.5409458832078481,0.5222356341920523],
+              data:[0.4645790959115778],
               fill:false,
               backgroundColor:'red',
               borderColor:'red',
@@ -24,7 +24,7 @@ const config = {
 
             {
               label:'중립',
-              data:[0.26877148780935883,0.26542214027809785,0.2569938638279519,0.2504995862013282,0.2617451796321591],
+              data:[0.2872774860854895],
               fill:false,
               backgroundColor:'gray',
               borderColor:'gray',
@@ -75,11 +75,7 @@ function submitParametersOfMJI(){
     source:sourceMJI
   };
 
-  //reInit
-  chart.data.datasets.forEach((dataset) => {
-          dataset.label='';
-          dataset.data=[];
-  });
+
 
   $.ajax({
     url:"/api/nlp/charts/MJI/params",
@@ -87,9 +83,30 @@ function submitParametersOfMJI(){
     data:params,
     contentType:'application/json;charset=utf-8'
   }).done(function(data){
-    console.log(data);
-  }).fail(function(data){
-    console.log("fail"+data);
+    positive=[data.response.positiveRatings]
+    negative=[data.response.negativeRatings];
+    neutral=[data.response.neutralRatings];
+    //reInit
+    chart.data.labels=[];
+    chart.data.datasets.forEach((dataset) => {
+            dataset.data=[];
+    });
+
+    chart.data.labels.push(startDate+"~"+endDate);
+    chart.data.datasets.forEach((dataset) => {
+        if (dataset.label=="긍정"){
+            dataset.data=positive;
+        }
+        else if (dataset.label=="부정"){
+            dataset.data=negative;
+        }
+
+        else if (dataset.label=="중립"){
+            dataset.data=neutral;
+        }
+        console.log('after');
+        console.log(dataset);
+    });
   });
 
   //chart.update();

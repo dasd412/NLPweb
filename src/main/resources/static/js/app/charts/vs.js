@@ -49,8 +49,6 @@ const config = {
   }
 };
 
-const source_set=["naver","twitter","both"];
-
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 

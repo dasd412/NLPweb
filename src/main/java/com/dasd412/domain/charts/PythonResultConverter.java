@@ -18,7 +18,7 @@ public class PythonResultConverter {
         logger.info("python result LJM convert" + result);
 
         List<Double> ratings = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
+        for (int i = length-1; i >=0; i--) {
             ratings.add(Double.parseDouble(result.get(result.size() - 1 - i)));
         }
 
