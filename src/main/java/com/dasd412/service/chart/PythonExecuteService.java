@@ -34,7 +34,7 @@ public class PythonExecuteService {
             logger.info("candidate : "+candidate);
             List<String> result = executor.executePython(startDate, endDate, candidate, source);
             logger.info("result vs : "+result);
-            //return Optional.of(converter.convertLJM(result, split.length));
+            return Optional.of(converter.convertLJM(result, split.length));
 
         } catch (Exception e) {
             logger.error("failed reading python!!");
