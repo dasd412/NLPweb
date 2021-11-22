@@ -47,7 +47,7 @@ public class PythonExecuteService {
         try{
             List<String>result= executor.executeMjiPython(startDate, endDate, source);
             logger.info("result mji : "+result);
-
+            return Optional.of(converter.convertMJI(result));
         } catch (Exception e) {
             logger.info("failed mji python");
         }

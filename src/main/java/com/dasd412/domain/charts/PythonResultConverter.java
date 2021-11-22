@@ -25,4 +25,15 @@ public class PythonResultConverter {
         logger.info("converted : " + ratings);
         return new LjmEntity(ratings);
     }
+
+    public MjiEntity convertMJI(List<String> result) {
+        logger.info("python result MJI convert" + result);
+        List<Double> ratings = new ArrayList<>();
+        for (int i = 2; i >=0; i--) {
+            ratings.add(Double.parseDouble(result.get(result.size() - 1 - i)));
+        }
+
+        logger.info("converted mji : " + ratings);
+        return new MjiEntity(ratings.get(0),ratings.get(1),ratings.get(2));
+    }
 }

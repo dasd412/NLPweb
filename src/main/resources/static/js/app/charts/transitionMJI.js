@@ -89,7 +89,7 @@ function submitParametersOfMJI(){
   }).done(function(data){
     console.log(data);
   }).fail(function(data){
-
+    console.log("fail"+data);
   });
 
   //chart.update();

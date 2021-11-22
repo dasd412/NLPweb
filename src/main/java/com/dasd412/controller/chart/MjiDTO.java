@@ -8,14 +8,26 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.List;
 
 public class MjiDTO {
-    private  List<Double> positiveRatings;
-    private  List<Double> neutralRatings;
-    private  List<Double> negativeRatings;
+    private  final double positiveRatings;
+    private  final double neutralRatings;
+    private  final double negativeRatings;
 
-    public MjiDTO(List<Double> positiveRatings, List<Double> neutralRatings, List<Double> negativeRatings) {
+    public MjiDTO(double positiveRatings,  double negativeRatings, double neutralRatings) {
         this.positiveRatings = positiveRatings;
         this.neutralRatings = neutralRatings;
         this.negativeRatings = negativeRatings;
+    }
+
+    public double getPositiveRatings() {
+        return positiveRatings;
+    }
+
+    public double getNeutralRatings() {
+        return neutralRatings;
+    }
+
+    public double getNegativeRatings() {
+        return negativeRatings;
     }
 
     public MjiDTO(MjiEntity entity) {
@@ -28,8 +40,8 @@ public class MjiDTO {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("positive",positiveRatings)
-                .append("neutral",neutralRatings)
                 .append("negative",negativeRatings)
+                .append("neutral",neutralRatings)
                 .toString();
     }
 }

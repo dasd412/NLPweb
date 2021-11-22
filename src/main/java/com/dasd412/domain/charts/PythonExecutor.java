@@ -24,7 +24,6 @@ public class PythonExecutor {
         List<String> resultList = new ArrayList<>();
 
         String[] cmdArray = {COMMAND, PATH, candidates, startDate, endDate,source};
-
         ProcessBuilder builder = new ProcessBuilder(cmdArray);
         Process process = builder.start();
         int exitVal = process.waitFor();  // 자식 프로세스가 종료될 때까지 기다림
@@ -43,7 +42,6 @@ public class PythonExecutor {
 
         List<String>result_Mji=new ArrayList<>();
         String[]cmd={COMMAND, PATH,startDate,endDate,source};
-
         ProcessBuilder builder = new ProcessBuilder(cmd);
         Process process = builder.start();
 

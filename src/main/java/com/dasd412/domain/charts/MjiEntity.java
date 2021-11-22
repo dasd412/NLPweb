@@ -3,28 +3,26 @@ package com.dasd412.domain.charts;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.util.List;
-
 public class MjiEntity {
-    private  List<Double> positiveRatings;
-    private  List<Double> neutralRatings;
-    private  List<Double> negativeRatings;
+    private  final double positiveRatings;
+    private  final double negativeRatings;
+    private  final double neutralRatings;
 
-    public MjiEntity(List<Double> positiveRatings, List<Double> neutralRatings, List<Double> negativeRatings) {
+    public MjiEntity(double positiveRatings, double negativeRatings,double neutralRatings) {
         this.positiveRatings = positiveRatings;
-        this.neutralRatings = neutralRatings;
         this.negativeRatings = negativeRatings;
+        this.neutralRatings = neutralRatings;
     }
 
-    public List<Double> getPositiveRatings() {
+    public double getPositiveRatings() {
         return positiveRatings;
     }
 
-    public List<Double> getNeutralRatings() {
+    public double getNeutralRatings() {
         return neutralRatings;
     }
 
-    public List<Double> getNegativeRatings() {
+    public double getNegativeRatings() {
         return negativeRatings;
     }
 
@@ -32,8 +30,8 @@ public class MjiEntity {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("positive",positiveRatings)
-                .append("neutral",neutralRatings)
                 .append("negative",negativeRatings)
+                .append("neutral",neutralRatings)
                 .toString();
     }
 }
