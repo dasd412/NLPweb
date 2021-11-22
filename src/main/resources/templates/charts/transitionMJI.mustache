@@ -3,14 +3,39 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <div class="col-md-6">
-    <div>
-      <select class="form-select" aria-label="Default select example" id="info_source_MJI">
-        <option value="naver"> Naver </option>
-        <option value="twitter"> Twitter </option>
-        <option value="both"> Both </option>
-      </select>
-      <button type="button" class="btn btn-primary" id="transitionBtn">확정</button>
+    <form>
+      <div class="form-group row">
+          <div id="startDateContainer">
+              <div class="col-xs-2">
+                  <i class="far fa-calendar"></i>
+                  <label for="ex1">시작일</label>
+                  <input class="form-control" id="startDateMJI" type="text" placeholder="Ex : 10-25">
+              </div>
+          </div>
+
+          <div id="endDateContainer" style="padding-left:10px">
+              <div class="col-xs-2">
+                  <i class="far fa-calendar"></i>
+                  <label for="ex1">종료일</label>
+                  <input class="form-control" id="endDateMJI" type="text" placeholder="Ex : 10-26">
+              </div>
+          </div>
+        <div id="sourceContainerMJI">
+            <i class="fas fa-database"></i>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="sourceMJI">
+                <option value="0">Naver</option>
+                <option value="1">Twitter</option>
+                <option value="2">Both</option>
+            </select>
+        </div>
+      </div>
+
+    </form>
+
+    <div style="margin-left:-10px">
+      <button type="button" class="btn btn-primary" id="MJIBtn">확정</button>
     </div>
+
     <div class="main">
       <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
         <canvas id="chart"></canvas>

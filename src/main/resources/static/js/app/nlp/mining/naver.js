@@ -1,4 +1,6 @@
 
+let latest="";
+
 const naverArrow={
 
   init:function(){
@@ -12,6 +14,10 @@ const naverArrow={
   },//init
 
   selectNaverResult : function(value){
+    if (latest!=""){
+        $(latest).css("background-color","white");
+        $(latest).css("color","black");
+    }
 
     $.ajax({
         type: "GET",
@@ -32,6 +38,10 @@ const naverArrow={
               $('#naverWord').append("<h1>워드 클라우드</h1>");
               $("#naverWord").append('<img src="/images/Ncloud'+value+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
               $("#naverWord").append('<img src="/images/sometrend'+value+'.png" style="padding-left:10px;height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+
+              $("#"+value).css("background-color","pink");
+              $("#"+value).css("color","white");
+              latest="#"+value;
         }
     });
   }

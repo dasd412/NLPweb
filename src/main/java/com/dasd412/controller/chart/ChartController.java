@@ -11,14 +11,9 @@ public class ChartController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping("/api/nlp/chart/vs4")
-    public String viewResolveVS4(Model model) {
-        return "/charts/vs4";
-    }
-
-    @GetMapping("/api/nlp/chart/vsLJM")
-    public String viewResolveVsLJM(Model model) {
-        return "/charts/vsLJM";
+    @GetMapping("/api/nlp/chart/vs")
+    public String viewResolveVS(Model model) {
+        return "/charts/vs";
     }
 
     @GetMapping("/api/nlp/chart/transitionMJI")

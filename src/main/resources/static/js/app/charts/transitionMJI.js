@@ -1,12 +1,12 @@
 const config = {
-  type: 'line',
+  type: 'horizontalBar',
   data: {
-          labels: ['09-21 ~ 09-28','09-28 ~ 10-05','10-05 ~ 10-12','10-12~10-19','10-19~10-29'],
+          labels: ['09-21 ~ 09-28'],
           datasets:
           [
             {
               label:'긍정',
-              data:[0.22223971865732356,0.20322654989628947,0.20294457840773197,0.20855453059082377,0.21601918617578858],
+              data:[0.2481434180029327],
               fill:false,
               backgroundColor:'blue',
               borderColor:'blue',
@@ -14,7 +14,7 @@ const config = {
             },
             {
               label:'부정',
-              data:[0.5089887935333176,0.5313513098256126,0.5400615577643161,0.5409458832078481,0.5222356341920523],
+              data:[0.4645790959115778],
               fill:false,
               backgroundColor:'red',
               borderColor:'red',
@@ -24,34 +24,12 @@ const config = {
 
             {
               label:'중립',
-              data:[0.26877148780935883,0.26542214027809785,0.2569938638279519,0.2504995862013282,0.2617451796321591],
+              data:[0.2872774860854895],
               fill:false,
               backgroundColor:'gray',
               borderColor:'gray',
               tension:0.2
-            },
-
-            {
-              label:'리얼미터 긍정',
-              //10월 1주차는 중복으로 취급했음
-              data:[0.402,0.404,0.392,0.400,0.387],
-              fill:false,
-              backgroundColor:'cyan',
-              borderColor:'cyan',
-              tension:0.2
-            },
-
-            {
-              label:'리얼미터 부정',
-              //10월 1주차는 중복으로 취급했음
-              data:[0.559,0.560,0.582,0.567,0.576],
-              fill:false,
-              backgroundColor:'orange',
-              borderColor:'orange',
-              tension:0.2
             }
-
-
           ]
   },
 
@@ -75,163 +53,65 @@ const config = {
 const ctx = document.getElementById('chart').getContext('2d');
 const chart = new Chart(ctx, config);
 
-function changeSource(){
-  let sourceSelected=$("#info_source_MJI option:selected").val();
-  //reInit
-  chart.data.datasets.forEach((dataset) => {
-          dataset.label='';
-          dataset.data=[];
-  });
-
-  if (sourceSelected=='naver'){
-    chart.data.datasets=[            {
-                                       label:'긍정',
-                                       data:[0.22223971865732356,0.20322654989628947,0.20294457840773197,0.20855453059082377,0.21601918617578858],
-                                       fill:false,
-                                       backgroundColor:'blue',
-                                       borderColor:'blue',
-                                       tension: 0.2
-                                     },
-                                     {
-                                       label:'부정',
-                                       data:[0.5089887935333176,0.5313513098256126,0.5400615577643161,0.5409458832078481,0.5222356341920523],
-                                       fill:false,
-                                       backgroundColor:'red',
-                                       borderColor:'red',
-                                       tension:0.2
-
-                                     },
-
-                                     {
-                                       label:'중립',
-                                       data:[0.26877148780935883,0.26542214027809785,0.2569938638279519,0.2504995862013282,0.2617451796321591],
-                                       fill:false,
-                                       backgroundColor:'gray',
-                                       borderColor:'gray',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 긍정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.402,0.404,0.392,0.400,0.387],
-                                       fill:false,
-                                       backgroundColor:'cyan',
-                                       borderColor:'cyan',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 부정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.559,0.560,0.582,0.567,0.576],
-                                       fill:false,
-                                       backgroundColor:'orange',
-                                       borderColor:'orange',
-                                       tension:0.2
-                                     }
-    ];
-  }else if (sourceSelected=='twitter'){
-                 chart.data.datasets=[{
-                                       label:'긍정',
-                                       data:[0.3798131196520358,0,0,0,0.4192217869519361],
-                                       fill:false,
-                                       backgroundColor:'blue',
-                                       borderColor:'blue',
-                                       tension: 0.2
-                                     },
-                                     {
-                                       label:'부정',
-                                       data:[0.3143173719042913,0,0,0,0.3485008286876601],
-                                       fill:false,
-                                       backgroundColor:'red',
-                                       borderColor:'red',
-                                       tension:0.2
-
-                                     },
-
-                                     {
-                                       label:'중립',
-                                       data:[0.3458209804450034,0,0,0,0.2322773843604038],
-                                       fill:false,
-                                       backgroundColor:'gray',
-                                       borderColor:'gray',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 긍정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.402,0.404,0.392,0.400,0.387],
-                                       fill:false,
-                                       backgroundColor:'cyan',
-                                       borderColor:'cyan',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 부정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.559,0.560,0.582,0.567,0.576],
-                                       fill:false,
-                                       backgroundColor:'orange',
-                                       borderColor:'orange',
-                                       tension:0.2
-                                     }
-    ];
-  }else if(sourceSelected=='both'){
-                 chart.data.datasets=[{
-                                       label:'긍정',
-                                       data:[0.25807717223697296,0.20322654989628947,0.20294457840773197,0.20855453059082377,0.30898343931482536],
-                                       fill:false,
-                                       backgroundColor:'blue',
-                                       borderColor:'blue',
-                                       tension: 0.2
-                                     },
-                                     {
-                                       label:'부정',
-                                       data:[0.44967563572660335,0.5313513098256126,0.5400615577643161,0.5409458832078481,0.44275276155025933],
-                                       fill:false,
-                                       backgroundColor:'red',
-                                       borderColor:'red',
-                                       tension:0.2
-
-                                     },
-
-                                     {
-                                       label:'중립',
-                                       data:[0.2922471920364237,0.26542214027809785,0.2569938638279519,0.2504995862013282,0.2482637991349153],
-                                       fill:false,
-                                       backgroundColor:'gray',
-                                       borderColor:'gray',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 긍정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.402,0.404,0.392,0.400,0.387],
-                                       fill:false,
-                                       backgroundColor:'cyan',
-                                       borderColor:'cyan',
-                                       tension:0.2
-                                     },
-
-                                     {
-                                       label:'리얼미터 부정',
-                                       //10월 1주차는 중복으로 취급했음
-                                       data:[0.559,0.560,0.582,0.567,0.576],
-                                       fill:false,
-                                       backgroundColor:'orange',
-                                       borderColor:'orange',
-                                       tension:0.2
-                                     }
-    ];
+function submitParametersOfMJI(){
+  //READ value
+  const startDate=$("#startDateMJI").val();
+  const endDate=$("#endDateMJI").val();
+  const sourceMJI=$("#sourceMJI option:selected").val();
+  //exception guard
+  if (startDate==""){
+    swal("시작일을 입력해주세요","ex:02-01 와 같은 형식으로 입력해주세요.","error");
+    return;
   }
 
-  chart.update();
+  if (endDate==""){
+      swal("종료일을 입력해주세요","ex:02-31 와 같은 형식으로 입력해주세요.","error");
+      return;
+  }
+
+  const params={
+    startDate:startDate,
+    endDate:endDate,
+    source:sourceMJI
+  };
+
+
+
+  $.ajax({
+    url:"/api/nlp/charts/MJI/params",
+    type:"get",
+    data:params,
+    contentType:'application/json;charset=utf-8'
+  }).done(function(data){
+    positive=[data.response.positiveRatings]
+    negative=[data.response.negativeRatings];
+    neutral=[data.response.neutralRatings];
+    //reInit
+    chart.data.labels=[];
+    chart.data.datasets.forEach((dataset) => {
+            dataset.data=[];
+    });
+
+    chart.data.labels.push(startDate+"~"+endDate);
+    chart.data.datasets.forEach((dataset) => {
+        if (dataset.label=="긍정"){
+            dataset.data=positive;
+        }
+        else if (dataset.label=="부정"){
+            dataset.data=negative;
+        }
+
+        else if (dataset.label=="중립"){
+            dataset.data=neutral;
+        }
+        console.log('after');
+        console.log(dataset);
+    });
+  });
+
+  //chart.update();
 }
 
 $(document).ready(function () {
-  $("#transitionBtn").attr('onclick','changeSource()');
+  $("#MJIBtn").attr('onclick','submitParametersOfMJI()');
 });

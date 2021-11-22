@@ -1,61 +1,37 @@
 #MJI{
   background-color: white;
   color:black;
-}
-
-#MJI:hover{
-  background-color: pink;
-  color:white;
+  cursor: pointer;
 }
 
 #YSY{
   background-color: white;
   color:black;
-}
-
-#YSY:hover{
-  background-color: pink;
-  color:white;
+  cursor: pointer;
 }
 
 #LNY{
   background-color: white;
   color:black;
-}
-
-#LNY:hover{
-  background-color: pink;
-  color:white;
+  cursor: pointer;
 }
 
 #LJM{
   background-color: white;
   color:black;
-}
-
-#LJM:hover{
-  background-color: pink;
-  color:white;
+  cursor: pointer;
 }
 
 #HJP{
   background-color: white;
   color:black;
-}
-
-#HJP:hover{
-  background-color: pink;
-  color:white;
+  cursor: pointer;
 }
 
 #HKA{
   background-color: white;
   color:black;
+  cursor: pointer;
 }
 
-
-#HKA:hover{
-   background-color: pink;
-   color:white;
-}
 

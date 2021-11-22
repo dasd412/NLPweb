@@ -1,4 +1,7 @@
 
+
+let previous="";
+
 const twitterArrow={
 
   init:function(){
@@ -12,6 +15,10 @@ const twitterArrow={
   },//init
 
   selecttwitterResult : function(value){
+    if (previous!=""){
+       $(previous).css("background-color","white");
+       $(previous).css("color","black");
+    }
 
     $.ajax({
         type: "GET",
@@ -32,6 +39,9 @@ const twitterArrow={
               $("#twitterWord").append('<img src="/images/cloud'+value+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
               $("#twitterWord").append('<img src="/images/sometrend'+value+'.png" style="padding-left:10px;height: auto; width: auto; max-width: 580px; max-height: 500px;">');
 
+              $("#Tw_"+value).css("background-color","pink");
+              $("#Tw_"+value).css("color","white");
+              previous="#Tw_"+value;
         }
     });
   }
