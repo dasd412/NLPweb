@@ -58,4 +58,11 @@ public class NaverTextMiningController {
         logger.info("HKA view");
         return "/mining_naver/naverHKA";
     }
+    
+    //주차별 네이버 결과 뷰 반환
+    @GetMapping("/api/nlp/week/naver")
+    public String viewResolveWeekNaver(Model model) {
+        logger.info("week naver view");
+        return "/week_naver/naver";
+    }
 }
