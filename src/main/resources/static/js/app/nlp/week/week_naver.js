@@ -1,7 +1,7 @@
 
 let latest_week_naver="";
-const week_naver_dict={0:"2021-09-22-2021-09-26-",1:"2021-10-05-2021-10-08-",2:"2021-10-11-2021-10-15-",
-3:"2021-10-18-2021-10-22-",4:"2021-10-25-2021-10-29-",5:"2021-11-01-2021-11-05-"};
+const week_naver_dict={0:"week1_N_",1:"week2_N_",2:"week3_N_",
+3:"week4_N_",4:"week5_N_",5:"week6_N_"};
 
 const naverWeekArrow={
 
@@ -14,6 +14,7 @@ const naverWeekArrow={
     $("#HJP_week").on('click',function(){_this.selectNaverResult("HJP");});
     $("#WHR_week").on('click',function(){_this.selectNaverResult("WHR");});
     $("#RSM_week").on('click',function(){_this.selectNaverResult("RSM");});
+    $("#ACS_week").on('click',function(){_this.selectNaverResult("ACS");});
   },//init
 
   selectNaverResult : function(value){
@@ -22,15 +23,13 @@ const naverWeekArrow={
         $(latest_week_naver).css("color","black");
     }
     const selected_week=$("#naver_week_select option:selected").val();
+    const selected=week_naver_dict[selected_week]+value;
+    console.log(selected);
 
-//    $.ajax({
-//        type: "GET",
-//        url: "/api/nlp/mine/naver/"+value,
-//        success: function(response) {
-//
-//
-//        }
-//    });
+    $('#naver_word_week').empty();
+    $('#naver_word_week').append("<h1>주차별 후보의 워드 클라우드</h1>");
+    $("#naver_word_week").append('<img src="/images/'+selected+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+
     const target="#"+value+"_week";
 
     $(target).css("background-color","pink");
