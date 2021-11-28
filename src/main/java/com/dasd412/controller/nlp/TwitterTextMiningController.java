@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 @Controller
 public class TwitterTextMiningController {
@@ -64,6 +67,16 @@ public class TwitterTextMiningController {
     public String viewResolveWeekTwitter(Model model) {
         logger.info("week twitter view");
         return "/week_twitter/twitter";
+    }
+    //주차별 트위터 lda 결과 뷰 반환
+    @GetMapping("/api/nlp/week/twitter/LDA")
+    public String getLDATwitterViewResolve(@RequestParam Map<String, String> params) {
+        logger.info("get params of lda twitter : " + params);
+        String folderName=params.get("folder");
+        String candidate=params.get("candidate");
+        logger.info("week twitter lda view resolve"+folderName+candidate);
+        logger.info("LDATwitter/"+folderName+"/"+candidate);
+        return "LDATwitter/"+folderName+"/"+candidate;
     }
 
 }
