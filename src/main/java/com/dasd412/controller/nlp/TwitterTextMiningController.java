@@ -58,4 +58,12 @@ public class TwitterTextMiningController {
         logger.info("HKA view");
         return "/mining_twitter/twitterHKA";
     }
+
+    //주차별 트위터 결과 뷰 반환
+    @GetMapping("/api/nlp/week/twitter")
+    public String viewResolveWeekTwitter(Model model) {
+        logger.info("week twitter view");
+        return "/week_twitter/twitter";
+    }
+
 }

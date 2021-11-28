@@ -58,6 +58,32 @@ function submitParameters(){
   const endDate=$("#endDate").val();
   const candidate=$("#candidate").val();
   const source=$("#source option:selected").val();
+  const selected_week=$("#vs_week_select option:selected").val();
+
+  $('#compare').empty();
+  $("#compare").append("<h1>여론조사와의 비교</h1>");
+
+  if (selected_week==0){
+      $('#compare').append('<img src="/images/0924rating.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if(selected_week==1){
+      $('#compare').append('<img src="/images/1004rating.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if(selected_week==2){
+      $('#compare').append('<img src="/images/1018vs.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if (selected_week==3){
+      $('#compare').append('<img src="/images/1018right.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if(selected_week==4){
+      $('#compare').append('<img src="/images/1025vs.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if (selected_week==5){
+     $('#compare').append('<img src="/images/1025right.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
+  else if(selected_week==6){
+     $('#compare').append('<img src="/images/1108rating.png" style="height: auto; width: auto; max-width: 1200px; max-height: 500px;">');
+  }
 
   //exception guard
   if (startDate==""){
@@ -106,6 +132,7 @@ function submitParameters(){
     });
 
     chart.update();
+
   });
 }
 
