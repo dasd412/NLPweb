@@ -1,5 +1,7 @@
 
 let latest_week_twitter="";
+const week_twitter_dict={0:"week1_T_",1:"week2_T_",2:"week3_T_",
+3:"week4_T_",4:"week5_T_",5:"week6_T_"};
 
 const twitterWeekArrow={
 
@@ -20,14 +22,10 @@ const twitterWeekArrow={
         $(latest_week_twitter).css("color","black");
     }
 
-//    $.ajax({
-//        type: "GET",
-//        url: "/api/nlp/mine/naver/"+value,
-//        success: function(response) {
-//
-//
-//        }
-//    });
+    $('#twitter_word_week').empty();
+    $('#twitter_word_week').append("<h1>주차별 후보의 트위터 워드 클라우드</h1>");
+    $("#twitter_word_week").append('<img src="/images/'+selected+'.png" style="height: auto; width: auto; max-width: 580px; max-height: 500px;">');
+
     const target="#"+value+"_week_T";
 
     $(target).css("background-color","pink");

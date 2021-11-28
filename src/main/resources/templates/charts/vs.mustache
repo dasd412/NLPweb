@@ -44,12 +44,30 @@
             <button type="button" class="btn btn-primary" id="vsBtn">확정</button>
         </div>
 
+
         <div class="main">
             <div class="chart-container" style="position: relative; height:200h; width:70vw; left:10%;">
                 <canvas id="chart"></canvas>
             </div>
         </div>
 
+        <div id="compare">
+
+        </div>
+
+    </div>
+
+    <div id="vsWeekContainer" >
+        <i class="fas fa-calendar-week">여론조사</i>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="vs_week_select">
+            <option value="0">2021-09-24 대선 후보 적합도</option>
+            <option value="1">2021-10-04 대선 후보 적합도</option>
+            <option value="2">2021-10-18 가상 다자 대결</option>
+            <option value="3">2021-10-18 범보수권 대선 후보 적합도</option>
+            <option value="4">2021-10-25 가상 다자 대결</option>
+            <option value="5">2021-10-25 범보수권 대선 후보 적합도</option>
+            <option value="6">2021-11-08 대선 후보 적합도</option>
+        </select>
     </div>
 
 {{/layout}}
