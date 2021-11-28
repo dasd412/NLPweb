@@ -1,7 +1,6 @@
 
 let latest_week_twitter="";
-const week_twitter_dict={0:"week1_T_",1:"week2_T_",2:"week3_T_",
-3:"week4_T_",4:"week5_T_",5:"week6_T_"};
+const week_twitter_dict={0:"week1_T_",4:"week5_T_",5:"week6_T_"};
 
 const twitterWeekArrow={
 
