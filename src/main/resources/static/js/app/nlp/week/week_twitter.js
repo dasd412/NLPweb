@@ -1,8 +1,7 @@
 
 let latest_week_twitter="";
 const week_twitter_dict={0:"week1_T_",4:"week5_T_",5:"week6_T_"};
-const lda_twitter_dict={0:"09220926",1:"10051008",2:"10121015",
-                     3:"10181022",4:"10251029",5:"11011105"};
+const lda_twitter_dict={0:"09220926",4:"10251029",5:"11011105"};
 function imgError(image) {
     image.onerror = "";
     image.src = "/images/notFound.png";
