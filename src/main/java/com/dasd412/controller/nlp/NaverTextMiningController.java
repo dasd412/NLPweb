@@ -1,10 +1,14 @@
 package com.dasd412.controller.nlp;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 @Controller
 public class NaverTextMiningController {
@@ -64,5 +68,16 @@ public class NaverTextMiningController {
     public String viewResolveWeekNaver(Model model) {
         logger.info("week naver view");
         return "/week_naver/naver";
+    }
+
+    //주차별 네이버 lda 결과 뷰 반환
+    @GetMapping("/api/nlp/week/naver/LDA")
+    public String getLDANaverViewResolve(@RequestParam Map<String, String> params) {
+        logger.info("get params of lda naver : " + params);
+        String folderName=params.get("folder");
+        String candidate=params.get("candidate");
+        logger.info("week nave lda view resolve"+folderName+candidate);
+        logger.info("LDANaver/"+folderName+"/"+candidate);
+        return "LDANaver/"+folderName+"/"+candidate;
     }
 }
